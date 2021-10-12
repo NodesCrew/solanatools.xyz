@@ -13,10 +13,6 @@ from lib.common import iter_file
 
 def render(jinja2_env, template_name, context):
     template = jinja2_env.get_template("%s.html" % template_name)
-    #
-    # with open("templates/%s.html" % template_name) as f:
-    #     template = jinja2.Template(f.read())
-
     with open("www/%s.html" % template_name, "w+") as w:
         w.write(template.render(**context))
 
