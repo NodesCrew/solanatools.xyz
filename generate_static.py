@@ -104,6 +104,7 @@ def generate_static():
     jinja2_env = jinja2.Environment(loader=jinja2_loader)
 
     render(jinja2_env, "index", get_index_context())
+    render(jinja2_env, "useful", get_index_context())
     render(jinja2_env, "onboarding-history", get_onboarding_context())
 
 
