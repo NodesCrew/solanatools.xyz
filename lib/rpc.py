@@ -2,14 +2,18 @@
 
 import json
 import config
+import requests
 from lib.common import fatal_error
 
 
-def call_rpc(http, params, rpc_endpoint=None):
+http = requests.Session()
+
+
+def call_rpc(params, cluster_rpc=None):
     """ Send request to RPC endpoint and returns result
     """
     r = http.post(
-        rpc_endpoint or config.RPC_TESTNET,
+        cluster_rpc or config.RPC_TESTNET,
         data=json.dumps({"jsonrpc": "2.0", "id": 1, **params}),
         headers={"Content-Type": "application/json"}
     )
@@ -23,8 +27,33 @@ def call_rpc(http, params, rpc_endpoint=None):
     fatal_error("Unable to call: %s" % {"jsonrpc": "2.0", "id": 1, **params})
 
 
-def get_epoch(http):
+def get_epoch(cluster_rpc):
     """ Get current epoch number from testnet RPC
     """
-    result = call_rpc(http, {"method": "getEpochInfo"})
+    result = call_rpc({"method": "getEpochInfo"}, cluster_rpc=cluster_rpc)
     return result["epoch"]
+
+
+def get_slots_info(cluster_rpc):
+    """ Get current slot in epoch
+    """
+    epoch_info = call_rpc({"method": "getEpochInfo"}, cluster_rpc=cluster_rpc)
+    return epoch_info["slotIndex"], epoch_info["slotsInEpoch"]
+
+
+def get_cluster_nodes(cluster_rpc):
+    """ Get cluster nodes
+    """
+    result = call_rpc({"method": "getClusterNodes"}, cluster_rpc=cluster_rpc)
+    return result
+
+
+def get_vote_accounts(cluster_rpc, merge=False):
+    """ Returns validators
+    """
+    voters = call_rpc({"method": "getVoteAccounts"}, cluster_rpc=cluster_rpc)
+
+    if not merge:
+        return voters
+
+    return [*voters["current"], *voters["delinquent"]]

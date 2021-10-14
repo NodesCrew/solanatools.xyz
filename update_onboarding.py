@@ -3,12 +3,12 @@ import config
 
 import os
 import json
-import requests
 
+from lib.rpc import http
 from lib.rpc import get_epoch
 
 
-def grab_data(http):
+def grab_data():
     """ Grab data from Solana Foundation Delegation Program status page
     """
     nodes = []
@@ -30,12 +30,10 @@ def update_onboarding():
     """ Update onboarding numbers and save
     """
     os.makedirs("data/onboarding", exist_ok=True)
-    http = requests.Session()
-
-    epoch_no = get_epoch(http)
+    epoch_no = get_epoch(cluster_rpc=config.RPC_TESTNET)
 
     with open("data/onboarding/%d.txt" % epoch_no, "w+") as w:
-        for node in grab_data(http):
+        for node in grab_data():
             w.write(node + "\n")
 
 

@@ -7,32 +7,16 @@ import glob
 import requests
 import collections
 
-from lib.rpc import call_rpc
+from lib.rpc import get_vote_accounts
 from lib.common import iter_file
 
 DIR_CREDITS = "data/credits"
-
-
-def get_slots_info(http):
-    epoch_info = call_rpc(http, {"method": "getEpochInfo"})
-    return epoch_info["slotIndex"], epoch_info["slotsInEpoch"]
-
-
-def get_vote_accounts(http):
-    voters = call_rpc(http, {"method": "getVoteAccounts"})
-
-    active = voters["current"]
-    delinquent = voters["delinquent"]
-
-    yield from active
-    yield from delinquent
 
 
 def update_credits():
     """ Update credits for cluster nodes
     """
     os.makedirs(DIR_CREDITS, exist_ok=True)
-    http = requests.Session()
 
     # Read credits database
     credits = collections.defaultdict(dict)
@@ -44,7 +28,7 @@ def update_credits():
             credits[epoch_no][tn_pubkey] = int(epoch_creds)
 
     # Grab fresh data from RPC
-    for validator in get_vote_accounts(http):
+    for validator in get_vote_accounts(cluster_rpc=config.RPC_TESTNET, merge=1):
         tn_pubkey = validator["nodePubkey"]
         for epoch, epoch_creds, prev_epoch_creds in validator["epochCredits"]:
             credits[epoch][tn_pubkey] = epoch_creds

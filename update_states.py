@@ -4,7 +4,6 @@ import config
 
 import base58
 import base64
-import requests
 
 from lib.rpc import call_rpc
 from lib.rpc import get_epoch
@@ -34,7 +33,7 @@ STATES = {
 }
 
 
-def iter_states(http):
+def iter_states():
     """ Yields tn_pubkey, mn_pubkey, state from RPC call
     """
     params = {
@@ -48,7 +47,7 @@ def iter_states(http):
             }
         ]
     }
-    for row in call_rpc(http, params, rpc_endpoint=config.RPC_MAINNET):
+    for row in call_rpc(params, cluster_rpc=config.RPC_MAINNET):
         coded_string = row["account"]["data"][0]
         vector = base64.b64decode(coded_string)
 
@@ -60,11 +59,12 @@ def iter_states(http):
 
 
 def update_states():
-    http = requests.Session()
-    epoch_no = get_epoch(http)
+    """ Update approve states
+    """
+    epoch_no = get_epoch(cluster_rpc=config.RPC_TESTNET)
 
     with open("data/states/%d.txt" % epoch_no, "w+") as w:
-        for tn_pubkey, _, state in iter_states(http):
+        for tn_pubkey, _, state in iter_states():
             w.write("%s;%s\n" % (tn_pubkey, state))
 
 

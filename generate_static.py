@@ -13,6 +13,7 @@ from lib.common import iter_file
 
 def render(jinja2_env, template_name, context):
     template = jinja2_env.get_template("%s.html" % template_name)
+
     with open("www/%s.html" % template_name, "w+") as w:
         w.write(template.render(**context))
 
@@ -30,6 +31,18 @@ def get_actual_states():
         states[tn_pubkey] = state
 
     return states
+
+
+def get_index_context():
+    for epoch_file in sorted(glob.glob("data/clusters/mainnet/*.txt")):
+        with open(epoch_file) as f:
+            mainnet = json.load(f)
+
+    for epoch_file in sorted(glob.glob("data/clusters/testnet/*.txt")):
+        with open(epoch_file) as f:
+            testnet = json.load(f)
+
+    return dict(mainnet=mainnet, testnet=testnet)
 
 
 def get_onboarding_context():
@@ -90,7 +103,7 @@ def generate_static():
     jinja2_loader = jinja2.FileSystemLoader("templates")
     jinja2_env = jinja2.Environment(loader=jinja2_loader)
 
-    render(jinja2_env, "index", dict())
+    render(jinja2_env, "index", get_index_context())
     render(jinja2_env, "onboarding-history", get_onboarding_context())
 
 
