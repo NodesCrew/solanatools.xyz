@@ -34,6 +34,8 @@ def get_actual_states():
 
 
 def get_index_context():
+    """ Get vars for index.html and useful templates
+    """
     for epoch_file in sorted(glob.glob("data/clusters/mainnet/*.txt")):
         with open(epoch_file) as f:
             mainnet = json.load(f)
@@ -46,6 +48,8 @@ def get_index_context():
 
 
 def get_onboarding_context():
+    """ Get vars for onboarding-history.html template
+    """
     nodes = dict()
     epoches = set()
     states = get_actual_states()
@@ -99,13 +103,60 @@ def get_onboarding_context():
                 datetime=datetime.datetime.utcnow())
 
 
+def get_signups_context():
+    """ Get vars for signups.html template
+    """
+    nodes = dict()
+    epoches = set()
+    epoch_positions = defaultdict(list)
+
+    # Map slots to positoons
+    for epoch_file in sorted(glob.glob("data/signups/*.txt")):
+        epoch_no = int(epoch_file.split("/")[-1][0:3])
+        epoches.add(epoch_no)
+
+        with open(epoch_file) as f:
+            for line in f:
+                _, slot = line.strip().split(";")
+                epoch_positions[epoch_no].append(int(slot))
+        epoch_positions[epoch_no].sort()
+
+    # Iterate
+    for epoch_file in sorted(glob.glob("data/signups/*.txt")):
+        epoch_no = int(epoch_file.split("/")[-1][0:3])
+        epoches.add(epoch_no)
+
+        with open(epoch_file) as f:
+            for line in f:
+                tn_pubkey, slot = line.strip().split(";")
+                slot = int(slot)
+
+                if tn_pubkey not in nodes:
+                    nodes[tn_pubkey] = {
+                        "testnet_pk": tn_pubkey,
+                        "slots": defaultdict(dict),
+                        "positions": defaultdict(dict),
+                    }
+
+                position = epoch_positions[epoch_no].index(slot) + 1
+                nodes[tn_pubkey]["slots"][epoch_no] = int(slot)
+                nodes[tn_pubkey]["positions"][epoch_no] = position
+
+    epoches = list(sorted(epoches))
+    return dict(nodes=nodes,
+                epoches=epoches,
+                datetime=datetime.datetime.utcnow())
+
+
 def generate_static():
     jinja2_loader = jinja2.FileSystemLoader("templates")
     jinja2_env = jinja2.Environment(loader=jinja2_loader)
 
-    render(jinja2_env, "index", get_index_context())
-    render(jinja2_env, "useful", get_index_context())
-    render(jinja2_env, "onboarding-history", get_onboarding_context())
+    # render(jinja2_env, "index", get_index_context())
+    # render(jinja2_env, "useful", get_index_context())
+    render(jinja2_env, "signups", get_signups_context())
+    # render(jinja2_env, "onboarding-history", get_onboarding_context())
+
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-{% macro cluster_versions_table(cluster) -%}
+{%- macro cluster_versions_table(cluster) --%}
     <table class="table table-sm table-condensed">
         <thead class="thead-dark">
             <tr>
@@ -17,12 +17,12 @@
         {% endfor %}
         </tbody>
     </table>
-{%- endmacro %}
+{%- endmacro -%}
 
 
-{% set active_page = "Home" %}
+{%- set active_page = "Home" -%}
 
-{% include "_layout_header.html" %}
+{%- include "_layout_header.html" -%}
 
 
         <section class="jumbotron text-center">
@@ -47,4 +47,4 @@
         </div>
 
 
-{% include "_layout_footer.html" %}
+{%- include "_layout_footer.html" -%}

@@ -47,7 +47,11 @@ def iter_states():
             }
         ]
     }
+
+    signups = dict()
+
     for row in call_rpc(params, cluster_rpc=config.RPC_MAINNET):
+
         coded_string = row["account"]["data"][0]
         vector = base64.b64decode(coded_string)
 
