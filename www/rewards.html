@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Solana Tools - Rewards">
+        <meta name="author" content="@xme">
+
+        <title>Solana Tools - Rewards</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
+        <style>
+            main {
+                padding-top: 65px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="index.html">Solana tools</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="onboarding-history.html">Onboarding</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="signups.html">Signups</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="rewards.html">Rewards</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="useful.html">Useful</a>
+                    </li>
+
+<!--                    <li class="nav-item ">-->
+<!--                        <a class="nav-link" href="credits-ranking.html">Voting</a>-->
+<!--                    </li>-->
+                </ul>
+
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a target="_blank" href="https://t.me/NodesCrew"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/></svg></a>
+                    </li>
+                    <li class="nav-item pl-2">
+                        <a target="_blank" href="https://github.com/myuriy/solanatools.xyz"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+
+        <main role="main" class="container-fluid"><section class="jumbotron text-center">
+            Mainnet rewards for nodes from stake-o-matic database
+        </section>
+
+        <div class="col-sm-12">
+            <table class="table table-striped table-hover" data-toggle="table" data-search="true" data-custom-sort="table_sorter" data-sort-order="asc" data-sort-name="epoch_235" data-show-columns="true">
+                <thead>
+                    <tr>
+                        <th scope="col" data-field="node_pubkey">Mainnet PK</th>
+                        <th scope="col" data-field="vote_pubkey">Vote account</th>
+                        
+                            <th scope="col" data-field="epoch_226" data-sortable="true">226</th>
+                        
+                            <th scope="col" data-field="epoch_227" data-sortable="true">227</th>
+                        
+                            <th scope="col" data-field="epoch_228" data-sortable="true">228</th>
+                        
+                            <th scope="col" data-field="epoch_229" data-sortable="true">229</th>
+                        
+                            <th scope="col" data-field="epoch_230" data-sortable="true">230</th>
+                        
+                            <th scope="col" data-field="epoch_231" data-sortable="true">231</th>
+                        
+                            <th scope="col" data-field="epoch_232" data-sortable="true">232</th>
+                        
+                            <th scope="col" data-field="epoch_233" data-sortable="true">233</th>
+                        
+                            <th scope="col" data-field="epoch_234" data-sortable="true">234</th>
+                        
+                            <th scope="col" data-field="epoch_235" data-sortable="true">235</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-2KFdhzwFdx2mcz9eZ11iozGTfHUfqHuZAp5CYpP7HsDr.md">2KFdhzwFdx2mcz9eZ11iozGTfHUfqHuZAp5CYpP7HsDr</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Bo9xXMsMvZF1idERuQ8Gqn8kWx1drxUnofxtNajcLsEv?locale=en">Bo9xXMsMvZF1idERuQ8Gqn8kWx1drxUnofxtNajcLsEv</a></td><td>5.04</td><td>6.30</td><td>6.18</td><td>6.07</td><td>6.06</td><td>6.07</td><td>5.98</td><td>6.03</td><td>8.57</td><td>8.39</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-2nayumaE7p4mU3skEjDJQHFr2NRJ6YTVMyqbcmApCbGo.md">2nayumaE7p4mU3skEjDJQHFr2NRJ6YTVMyqbcmApCbGo</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/8KokPGKTfneh2YZtd7iFMqnAsdoErKRmLTFrtHmTGUsB?locale=en">8KokPGKTfneh2YZtd7iFMqnAsdoErKRmLTFrtHmTGUsB</a></td><td>5.73</td><td>5.91</td><td>5.83</td><td>5.72</td><td>5.68</td><td>5.71</td><td>5.61</td><td>5.63</td><td>7.09</td><td>7.04</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-34Eegy89hWD8HskhX8GzkkrEgdWDAAsTd5ZPKPHs6pBN.md">34Eegy89hWD8HskhX8GzkkrEgdWDAAsTd5ZPKPHs6pBN</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/GPjDwfsmy8A8ZpPHB4uTwZQhPnbA3mRQeRsY58uXqeDy?locale=en">GPjDwfsmy8A8ZpPHB4uTwZQhPnbA3mRQeRsY58uXqeDy</a></td><td>5.58</td><td>5.56</td><td>5.18</td><td>5.42</td><td>5.36</td><td>5.39</td><td>5.27</td><td>7.42</td><td>7.17</td><td>7.01</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-3RXKQBRv7xKTQeNdLSPhCiD4QcUfxEQ12rtgUkMf5LnS.md">3RXKQBRv7xKTQeNdLSPhCiD4QcUfxEQ12rtgUkMf5LnS</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/BxFf75Vtzro2Hy3coFHKxFMZo5au8W7J8BmLC3gCMotU?locale=en">BxFf75Vtzro2Hy3coFHKxFMZo5au8W7J8BmLC3gCMotU</a></td><td>38.28</td><td>39.02</td><td>38.93</td><td>39.04</td><td>38.61</td><td>39.46</td><td>39.69</td><td>40.16</td><td>39.80</td><td>39.52</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-3T2nqHFbmexvkhEo25SKnJsbaAjuyUGBjvdttczxDKgs.md">3T2nqHFbmexvkhEo25SKnJsbaAjuyUGBjvdttczxDKgs</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/2hjoQMqRAG5ftTPCSkUavMEaVX35qbj3LK3Q3HDmv4mZ?locale=en">2hjoQMqRAG5ftTPCSkUavMEaVX35qbj3LK3Q3HDmv4mZ</a></td><td>8.16</td><td>8.11</td><td>8.03</td><td>3.18</td><td>7.89</td><td>2.58</td><td>2.57</td><td>7.37</td><td>7.26</td><td>7.01</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-3VRzZfDDnNiSBzW259vKgtq5x1E4fzkvs5SZcVtpJEzj.md">3VRzZfDDnNiSBzW259vKgtq5x1E4fzkvs5SZcVtpJEzj</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Gas5iZLK44wyFdRkQY2ygb4uXwKPFtVfGje63TVqbFkw?locale=en">Gas5iZLK44wyFdRkQY2ygb4uXwKPFtVfGje63TVqbFkw</a></td><td>8.52</td><td>8.49</td><td>8.39</td><td>8.31</td><td>8.23</td><td>8.26</td><td>8.14</td><td>7.78</td><td>7.11</td><td>7.35</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-3zaPajeDw8FxutdgFTUSVKp1cxWFqs62dtuCZNQ18TT9.md">3zaPajeDw8FxutdgFTUSVKp1cxWFqs62dtuCZNQ18TT9</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/6vJGsbs5jYKEdQGUfMEYN4Nenwscgza1dBXB3WJraFyH?locale=en">6vJGsbs5jYKEdQGUfMEYN4Nenwscgza1dBXB3WJraFyH</a></td><td>8.32</td><td>8.23</td><td>8.16</td><td>8.08</td><td>8.05</td><td>8.06</td><td>7.94</td><td>7.56</td><td>7.36</td><td>7.16</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-4ULWSuaNnhQntP3DVxg1xa4yeNLNpDnAw3gTtrhPHzEA.md">4ULWSuaNnhQntP3DVxg1xa4yeNLNpDnAw3gTtrhPHzEA</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/G7akZgkcuqr7Vw1bHXqerKeawQ2Uc1WK9VaYq9APWNLE?locale=en">G7akZgkcuqr7Vw1bHXqerKeawQ2Uc1WK9VaYq9APWNLE</a></td><td>9.26</td><td>9.20</td><td>9.10</td><td>8.95</td><td>8.95</td><td>8.95</td><td>8.87</td><td>8.52</td><td>8.30</td><td>8.08</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-58zMEh4gf2yL9wKd56BjSW6xCYnfs6tEyjrBfLo35eby.md">58zMEh4gf2yL9wKd56BjSW6xCYnfs6tEyjrBfLo35eby</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/CU3C5v6q6WsKxz7rbNvLsLeJwnMCpNMBZMm5BCpvSVWa?locale=en">CU3C5v6q6WsKxz7rbNvLsLeJwnMCpNMBZMm5BCpvSVWa</a></td><td>8.31</td><td>8.28</td><td>8.15</td><td>8.10</td><td>8.03</td><td>8.03</td><td>7.93</td><td>7.56</td><td>7.35</td><td>7.14</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-5p8qKVyKthA9DUb1rwQDzjcmTkaZdwN97J3LiaEywUjd.md">5p8qKVyKthA9DUb1rwQDzjcmTkaZdwN97J3LiaEywUjd</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/EsEtxoyhFTgfvudcy2VwwQJ1qA6BScLUW39PKpYczuxF?locale=en">EsEtxoyhFTgfvudcy2VwwQJ1qA6BScLUW39PKpYczuxF</a></td><td>9.87</td><td>9.85</td><td>7.60</td><td>9.65</td><td>9.57</td><td>9.65</td><td>9.49</td><td>9.15</td><td>8.91</td><td>8.69</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-66RAWQ8kUE95WpuJ7vkAS55TWfDo7ZonyTsLeGfs7dt3.md">66RAWQ8kUE95WpuJ7vkAS55TWfDo7ZonyTsLeGfs7dt3</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/BGLiWCvSstg7chDyWSDe5JrSD694PKpz1jHmsk5XyVxn?locale=en">BGLiWCvSstg7chDyWSDe5JrSD694PKpz1jHmsk5XyVxn</a></td><td>5.97</td><td>5.95</td><td>5.38</td><td>5.81</td><td>5.56</td><td>5.72</td><td>5.62</td><td>5.65</td><td>8.47</td><td>8.29</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-6UvA3z3sKbxGXobTQngyL4iVX7kV9jeGYmCUGRMYZqcK.md">6UvA3z3sKbxGXobTQngyL4iVX7kV9jeGYmCUGRMYZqcK</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Ay7vbs9t8KyZvyBeoSJKZ6YdweMnXSWujdS9UFKnf4vx?locale=en">Ay7vbs9t8KyZvyBeoSJKZ6YdweMnXSWujdS9UFKnf4vx</a></td><td>8.18</td><td>8.14</td><td>8.03</td><td>8.00</td><td>7.89</td><td>7.12</td><td>7.80</td><td>8.21</td><td>7.90</td><td>7.78</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-6kTJYbhT6SAbr7tLP2DrAQpCBEnNboJAP1QaXg5W2JNC.md">6kTJYbhT6SAbr7tLP2DrAQpCBEnNboJAP1QaXg5W2JNC</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/C9nCGHyXXT5zreixJ5TvcyT7XE5U2hoAK5eiXmEZfeK5?locale=en">C9nCGHyXXT5zreixJ5TvcyT7XE5U2hoAK5eiXmEZfeK5</a></td><td>8.38</td><td>8.33</td><td>8.22</td><td>8.16</td><td>8.10</td><td>8.13</td><td>8.00</td><td>7.65</td><td>7.44</td><td>7.23</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-6kfL3zErU3z9iofwdg6iM6UJDFZaVJNguAwy8SiN82db.md">6kfL3zErU3z9iofwdg6iM6UJDFZaVJNguAwy8SiN82db</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/FvrZudS8hmEfM4PUF2xgVxzgyDqRJdT9byHmdkzAQWps?locale=en">FvrZudS8hmEfM4PUF2xgVxzgyDqRJdT9byHmdkzAQWps</a></td><td>8.14</td><td>8.02</td><td>7.97</td><td>7.89</td><td>7.84</td><td>7.87</td><td>7.77</td><td>7.41</td><td>6.76</td><td>7.00</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-776BzpbpsZU1rbCkNHizEP5r8RE8QL12Xqm49krkLPLy.md">776BzpbpsZU1rbCkNHizEP5r8RE8QL12Xqm49krkLPLy</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/36jVWrHfpyN2RvXCkGA75qdzcBqFfMcyKbC2qg4o2gA8?locale=en">36jVWrHfpyN2RvXCkGA75qdzcBqFfMcyKbC2qg4o2gA8</a></td><td>8.94</td><td>8.91</td><td>8.78</td><td>8.73</td><td>8.67</td><td>8.68</td><td>8.55</td><td>8.19</td><td>7.97</td><td>7.76</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-7XoEy6mmoApocWzei34XNvfGepHRaZnze5oENBidQAj7.md">7XoEy6mmoApocWzei34XNvfGepHRaZnze5oENBidQAj7</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/2jevuBmk1TrXA36bRZ4bhdJGPzGqcCDoVzRcyYtxzKHY?locale=en">2jevuBmk1TrXA36bRZ4bhdJGPzGqcCDoVzRcyYtxzKHY</a></td><td>8.69</td><td>8.62</td><td>8.55</td><td>8.50</td><td>8.42</td><td>8.44</td><td>8.32</td><td>7.96</td><td>7.52</td><td>7.53</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-7vydmmqVDcJy4HRR3dLSbWchn9ZPmFMB6cRNYZvnKRzd.md">7vydmmqVDcJy4HRR3dLSbWchn9ZPmFMB6cRNYZvnKRzd</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/D1BYFpbZuwUtgNT7CeuQFQjyhEQbm9Z6XP8R7cfeWed1?locale=en">D1BYFpbZuwUtgNT7CeuQFQjyhEQbm9Z6XP8R7cfeWed1</a></td><td>6.57</td><td>6.54</td><td>6.44</td><td>6.27</td><td>6.32</td><td>6.28</td><td>6.22</td><td>6.28</td><td>7.81</td><td>7.65</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-81zNHWkYaQRL3TWHSNwzX6T64yUyVQ7qXzLLxvaaB6b3.md">81zNHWkYaQRL3TWHSNwzX6T64yUyVQ7qXzLLxvaaB6b3</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/2mQNruSKNnn6fWqJjKNGsQtpsMnuxxMzHsrKT6iVR7tW?locale=en">2mQNruSKNnn6fWqJjKNGsQtpsMnuxxMzHsrKT6iVR7tW</a></td><td>8.17</td><td>8.13</td><td>8.01</td><td>3.18</td><td>7.88</td><td>2.58</td><td>2.57</td><td>7.39</td><td>7.26</td><td>7.01</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-8MjSgBV1s9CZvqknwraV92QrgRRew5WE71jLpZwK7YKJ.md">8MjSgBV1s9CZvqknwraV92QrgRRew5WE71jLpZwK7YKJ</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/9xEZtVx6BBCyauzQjabQRyC7mKsbxrjGDnPXuB8ZTdGS?locale=en">9xEZtVx6BBCyauzQjabQRyC7mKsbxrjGDnPXuB8ZTdGS</a></td><td>8.18</td><td>8.14</td><td>8.06</td><td>7.99</td><td>7.90</td><td>7.93</td><td>7.79</td><td>7.43</td><td>7.22</td><td>7.02</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-8QDL3JpfRBnCkHcVA26ASWYYkJ1HGvh37TGgUKkfFSnR.md">8QDL3JpfRBnCkHcVA26ASWYYkJ1HGvh37TGgUKkfFSnR</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/3fAvmL3MsMCu5iw1FMujiBSZGFEXzq6S8bY5vHrp5mZk?locale=en">3fAvmL3MsMCu5iw1FMujiBSZGFEXzq6S8bY5vHrp5mZk</a></td><td>8.74</td><td>8.70</td><td>8.32</td><td>8.54</td><td>8.44</td><td>8.48</td><td>8.34</td><td>7.97</td><td>7.76</td><td>7.54</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-8ebFZA8NPLBZD91CwsG1HWQsa2B5Ludgdyf5Hi3sYhhs.md">8ebFZA8NPLBZD91CwsG1HWQsa2B5Ludgdyf5Hi3sYhhs</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/9tedbEYypEKXAMkHcg42rn3fXY1B8hB6cdE3ZTFouXLL?locale=en">9tedbEYypEKXAMkHcg42rn3fXY1B8hB6cdE3ZTFouXLL</a></td><td>8.85</td><td>8.82</td><td>8.74</td><td>8.55</td><td>8.57</td><td>8.59</td><td>8.49</td><td>8.19</td><td>8.02</td><td>7.94</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-93Q99nhdKjuSe6WNXgMBbC3s8QVQEAoHKt91PNRkUkMn.md">93Q99nhdKjuSe6WNXgMBbC3s8QVQEAoHKt91PNRkUkMn</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/8D8XL6ovqx15RKwC1XtFyTz6H8JYF2fUsxTnsY4b123P?locale=en">8D8XL6ovqx15RKwC1XtFyTz6H8JYF2fUsxTnsY4b123P</a></td><td>8.13</td><td>8.00</td><td>7.90</td><td>7.92</td><td>7.85</td><td>7.88</td><td>7.77</td><td>7.41</td><td>7.15</td><td>7.00</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-9SUf5VUSACNWW5CgbLs26hfezhUgeR5pNuTB1ZmUFxVg.md">9SUf5VUSACNWW5CgbLs26hfezhUgeR5pNuTB1ZmUFxVg</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/2Dwg3x37yN4q8SyrrwDaRPGQTp14atcwMPewe3Y8FDoL?locale=en">2Dwg3x37yN4q8SyrrwDaRPGQTp14atcwMPewe3Y8FDoL</a></td><td>8.26</td><td>8.17</td><td>8.13</td><td>8.04</td><td>8.00</td><td>8.00</td><td>7.89</td><td>7.52</td><td>7.31</td><td>7.10</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-9cDdzkrimGrsNVKKRtN2Q1ydBwDxjDtPGyyLRgnUYyAQ.md">9cDdzkrimGrsNVKKRtN2Q1ydBwDxjDtPGyyLRgnUYyAQ</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Amhxcj1nt4BhnmTfy3ncqaoLzVr94QEfGMYY9Lqkg9en?locale=en">Amhxcj1nt4BhnmTfy3ncqaoLzVr94QEfGMYY9Lqkg9en</a></td><td>4.83</td><td>8.41</td><td>2.84</td><td>2.84</td><td>8.16</td><td>8.09</td><td>8.04</td><td>7.69</td><td>7.48</td><td>7.28</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-9ppJrpsbbuGNjiMhhD52Ueco4KXUzVfrtNQ6tAcDab4f.md">9ppJrpsbbuGNjiMhhD52Ueco4KXUzVfrtNQ6tAcDab4f</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/EcjtYtuxBuupjeyXNdttATwoQoNL5Ck7bmrqDCj3ALT4?locale=en">EcjtYtuxBuupjeyXNdttATwoQoNL5Ck7bmrqDCj3ALT4</a></td><td>9.12</td><td>9.09</td><td>8.83</td><td>8.88</td><td>8.83</td><td>8.86</td><td>8.74</td><td>8.39</td><td>7.83</td><td>7.95</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-9rVx9wo6d3Akaq9YBw4sFuwc9oFGtzs8GsTfkHE7EH6t.md">9rVx9wo6d3Akaq9YBw4sFuwc9oFGtzs8GsTfkHE7EH6t</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/EgxeaUnq3ZrZBqBDwfK1SMckhF4DKT7bfxitc1vdAsPC?locale=en">EgxeaUnq3ZrZBqBDwfK1SMckhF4DKT7bfxitc1vdAsPC</a></td><td>8.62</td><td>8.58</td><td>8.48</td><td>8.38</td><td>8.34</td><td>8.36</td><td>8.24</td><td>7.88</td><td>7.66</td><td>7.46</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-A31PGH4i5xGn7SHWpsQRhpBYUwanRuqNrHBp8bSeCSEr.md">A31PGH4i5xGn7SHWpsQRhpBYUwanRuqNrHBp8bSeCSEr</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/EkLA4nA5jtM2t2FkNWo6XWAyvQyaJJUZoX5p7LMawoaz?locale=en">EkLA4nA5jtM2t2FkNWo6XWAyvQyaJJUZoX5p7LMawoaz</a></td><td>9.81</td><td>9.77</td><td>9.64</td><td>9.59</td><td>9.52</td><td>9.53</td><td>9.41</td><td>9.06</td><td>8.83</td><td>8.61</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-AmhQFcGvH2hjkucP78rn6GMKSbstYwyFpCDVKZUwBGrG.md">AmhQFcGvH2hjkucP78rn6GMKSbstYwyFpCDVKZUwBGrG</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/BdM7KCd6ZYWcaCMmHVi8YeL4jFzDVM9cRLJUeRAGSvMS?locale=en">BdM7KCd6ZYWcaCMmHVi8YeL4jFzDVM9cRLJUeRAGSvMS</a></td><td>9.16</td><td>9.14</td><td>9.01</td><td>8.97</td><td>8.89</td><td>8.92</td><td>8.80</td><td>8.45</td><td>8.49</td><td>9.60</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-AqGAaaACTDNGrVNVoiyCGiMZe8pcM1YjGUcUdVwgUtud.md">AqGAaaACTDNGrVNVoiyCGiMZe8pcM1YjGUcUdVwgUtud</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/85SzhUpCkRKcGryNC4YYYBVKZU6VE1QwovfdxnseaLow?locale=en">85SzhUpCkRKcGryNC4YYYBVKZU6VE1QwovfdxnseaLow</a></td><td>9.02</td><td>8.97</td><td>8.85</td><td>8.78</td><td>8.72</td><td>8.74</td><td>8.65</td><td>8.30</td><td>7.98</td><td>7.87</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-Arvv3uwEyDPKckw3wEFiCq9hgxMw8kawFU6doxFAWGYR.md">Arvv3uwEyDPKckw3wEFiCq9hgxMw8kawFU6doxFAWGYR</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/27MtjMSAQ2BGkXNuJEJkxFyCJT8dugGAaHJ9T7Gc6x4x?locale=en">27MtjMSAQ2BGkXNuJEJkxFyCJT8dugGAaHJ9T7Gc6x4x</a></td><td>8.53</td><td>8.40</td><td>8.40</td><td>8.23</td><td>8.27</td><td>8.29</td><td>7.83</td><td>8.49</td><td>8.26</td><td>8.05</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-BAHNFqttxYMMZUDqMm1JQPnxkZoHLnpash1ouM7pnLEA.md">BAHNFqttxYMMZUDqMm1JQPnxkZoHLnpash1ouM7pnLEA</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/puuuBCC9zKPt3hMdTBHHcgTUAAj8LfY5WUfgcCTkJoy?locale=en">puuuBCC9zKPt3hMdTBHHcgTUAAj8LfY5WUfgcCTkJoy</a></td><td>8.15</td><td>8.14</td><td>8.03</td><td>7.86</td><td>7.89</td><td>7.89</td><td>7.80</td><td>7.42</td><td>6.80</td><td>7.01</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-BFzeiGhzaPVcH8jA9mz6i9mBuCb9pmVknMW3xxf4afPv.md">BFzeiGhzaPVcH8jA9mz6i9mBuCb9pmVknMW3xxf4afPv</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/8dY5bV5Ur1Yf9Z21ETZBRNQCMFtTr8ZdByeTo8tNAxFW?locale=en">8dY5bV5Ur1Yf9Z21ETZBRNQCMFtTr8ZdByeTo8tNAxFW</a></td><td>7.63</td><td>8.52</td><td>8.40</td><td>7.87</td><td>8.30</td><td>4.29</td><td>4.29</td><td>7.77</td><td>7.61</td><td>7.35</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-BWungpcnz1j9CFuxk1oXtLZ42WgnRpGmYxS9ZVaoQ3hJ.md">BWungpcnz1j9CFuxk1oXtLZ42WgnRpGmYxS9ZVaoQ3hJ</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Acf5uSCnLwBBeqfAhGWMbu8cFQyPQTZtoNWJLXrX6W5v?locale=en">Acf5uSCnLwBBeqfAhGWMbu8cFQyPQTZtoNWJLXrX6W5v</a></td><td>0.59</td><td>0.59</td><td>0.58</td><td>6.03</td><td>5.93</td><td>5.99</td><td>5.82</td><td>5.86</td><td>7.33</td><td>7.24</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-BnFVY6zedcbWvFAKa2976xNAkzyHnDQp21T6Xt3BAter.md">BnFVY6zedcbWvFAKa2976xNAkzyHnDQp21T6Xt3BAter</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/7GekE3x31ArGMZWxoSWyvguTogCQkrhm9isdjMRGWwL6?locale=en">7GekE3x31ArGMZWxoSWyvguTogCQkrhm9isdjMRGWwL6</a></td><td>8.44</td><td>8.41</td><td>7.72</td><td>8.28</td><td>8.15</td><td>8.01</td><td>8.06</td><td>7.69</td><td>7.48</td><td>7.27</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-CGoT67sSerk9ckwin6yY4mna3ymLxxKNqdYeQZ9xNdkD.md">CGoT67sSerk9ckwin6yY4mna3ymLxxKNqdYeQZ9xNdkD</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/2BGBakG9kjmZAaygVmAuUrBSqBZt8p5FVabbStxHEXUj?locale=en">2BGBakG9kjmZAaygVmAuUrBSqBZt8p5FVabbStxHEXUj</a></td><td>8.59</td><td>8.55</td><td>8.45</td><td>8.38</td><td>8.30</td><td>8.39</td><td>8.23</td><td>7.87</td><td>7.60</td><td>7.44</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-ChkH4bTk7c5NSGbxvXx89yY2oU7rFJsr3Cq1gPNCCPVe.md">ChkH4bTk7c5NSGbxvXx89yY2oU7rFJsr3Cq1gPNCCPVe</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/CrZEDyNQfbxakxdFYzMc8dtrYq4XDoRZ51xBa12skDpJ?locale=en">CrZEDyNQfbxakxdFYzMc8dtrYq4XDoRZ51xBa12skDpJ</a></td><td>5.97</td><td>5.95</td><td>5.85</td><td>5.81</td><td>5.64</td><td>5.69</td><td>5.60</td><td>5.62</td><td>6.59</td><td>6.70</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-CpuDNi3iVoHXbaT8gHpzKe6rqeBasoYjEKi21q7NRVJS.md">CpuDNi3iVoHXbaT8gHpzKe6rqeBasoYjEKi21q7NRVJS</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/2QE9X9X4tdDUTYic1DgBBJjU7cWUNPbKYGerCb9KqDQN?locale=en">2QE9X9X4tdDUTYic1DgBBJjU7cWUNPbKYGerCb9KqDQN</a></td><td>8.50</td><td>8.46</td><td>8.36</td><td>8.23</td><td>8.21</td><td>8.23</td><td>8.14</td><td>7.77</td><td>7.55</td><td>7.35</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-CsKpHvEjoSkdNduEjb7mfuJbzRKqc5ypde4yUW4iGMS1.md">CsKpHvEjoSkdNduEjb7mfuJbzRKqc5ypde4yUW4iGMS1</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/6dAvPUPbFKz1rGLTaCDLC3XRcrJKEge6SQgTvthxQXak?locale=en">6dAvPUPbFKz1rGLTaCDLC3XRcrJKEge6SQgTvthxQXak</a></td><td>8.45</td><td>8.41</td><td>8.34</td><td>4.19</td><td>4.17</td><td>8.20</td><td>8.20</td><td>7.74</td><td>7.05</td><td>7.32</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-D1cDycRgaAF4d72J3EbUUhL7bAxbVa3t9J3oskmAtGk4.md">D1cDycRgaAF4d72J3EbUUhL7bAxbVa3t9J3oskmAtGk4</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/8g5tkmJwrmwD7kEBm7jTzmB66o2e4quRcB2G5SfakUA2?locale=en">8g5tkmJwrmwD7kEBm7jTzmB66o2e4quRcB2G5SfakUA2</a></td><td>5.89</td><td>5.87</td><td>5.67</td><td>5.77</td><td>5.70</td><td>5.72</td><td>5.61</td><td>5.63</td><td>7.20</td><td>7.04</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-D2Wa6JtXeyqFMdoacpKMo86Pbr4YpfdVCtAhem8HjqfF.md">D2Wa6JtXeyqFMdoacpKMo86Pbr4YpfdVCtAhem8HjqfF</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/BJMdhjvPfBp3agAthKPDfYQJ9dEUmmXtnM66e337z5SL?locale=en">BJMdhjvPfBp3agAthKPDfYQJ9dEUmmXtnM66e337z5SL</a></td><td>8.34</td><td>8.29</td><td>8.18</td><td>8.11</td><td>8.06</td><td>8.08</td><td>7.97</td><td>7.60</td><td>7.39</td><td>7.19</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-DkycekX1rxCUr9FtBHfacHEgCTfRdRLaKYTiz7fXHMQ7.md">DkycekX1rxCUr9FtBHfacHEgCTfRdRLaKYTiz7fXHMQ7</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/HYuiHu9Sn63zd2dg589wQ9M5krxrKs3fGUydTRRP8C8P?locale=en">HYuiHu9Sn63zd2dg589wQ9M5krxrKs3fGUydTRRP8C8P</a></td><td>8.35</td><td>8.32</td><td>8.20</td><td>8.14</td><td>8.08</td><td>8.12</td><td>7.96</td><td>7.61</td><td>6.92</td><td>7.19</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-DsfrDeLSNgvphTCiPD5aMh35Wk3asm2GBHMeZDZ2Wzdd.md">DsfrDeLSNgvphTCiPD5aMh35Wk3asm2GBHMeZDZ2Wzdd</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/ErEqDD2DHyDPrrHW8Z4f6MEvTHfQvSPCT8AH3D2PuE1p?locale=en">ErEqDD2DHyDPrrHW8Z4f6MEvTHfQvSPCT8AH3D2PuE1p</a></td><td>8.48</td><td>8.46</td><td>8.36</td><td>8.29</td><td>8.22</td><td>8.24</td><td>8.11</td><td>7.75</td><td>7.53</td><td>7.32</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-DziZfhYj5RcXFvanmsfmtRqwRteSNDnTgLNEawdZww9J.md">DziZfhYj5RcXFvanmsfmtRqwRteSNDnTgLNEawdZww9J</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Gk8yrBiy3gBWCgnHaXcEeMEyCZf9sK3kvTaSdAQAj7zm?locale=en">Gk8yrBiy3gBWCgnHaXcEeMEyCZf9sK3kvTaSdAQAj7zm</a></td><td>5.50</td><td>5.24</td><td>5.47</td><td>5.37</td><td>5.32</td><td>5.33</td><td>5.12</td><td>5.28</td><td>7.22</td><td>7.05</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-ESihGHvvNWPBTu3RZohRgEEuBmoyVhgHYTf3Cot9523L.md">ESihGHvvNWPBTu3RZohRgEEuBmoyVhgHYTf3Cot9523L</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/HBhcKLdKZoM4MeYruYRmQYRNx6RWbdf4VVcJNhS3g13o?locale=en">HBhcKLdKZoM4MeYruYRmQYRNx6RWbdf4VVcJNhS3g13o</a></td><td>7.74</td><td>7.64</td><td>7.40</td><td>8.14</td><td>8.08</td><td>8.11</td><td>7.99</td><td>7.63</td><td>8.57</td><td>8.36</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-EUVBn58XXTX9RBTm1R7Wd8n8JkvBMQfc9uSn5wPhbdBL.md">EUVBn58XXTX9RBTm1R7Wd8n8JkvBMQfc9uSn5wPhbdBL</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/8NQEDxYxwUEPQk1yKFJEGHvYj22Je5xUQWLPkHfKkwrD?locale=en">8NQEDxYxwUEPQk1yKFJEGHvYj22Je5xUQWLPkHfKkwrD</a></td><td>8.46</td><td>8.43</td><td>8.23</td><td>8.32</td><td>8.15</td><td>8.23</td><td>8.05</td><td>7.73</td><td>7.51</td><td>7.30</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-EvCJXxhHKqpXZDfwCA3HmkgxU1apn8kipuivm5ZinGRM.md">EvCJXxhHKqpXZDfwCA3HmkgxU1apn8kipuivm5ZinGRM</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/CR64wh7PFaTz5mFY3mXC1u5NLXepegddZqv6VLXGvo4D?locale=en">CR64wh7PFaTz5mFY3mXC1u5NLXepegddZqv6VLXGvo4D</a></td><td>0.00</td><td>-</td><td>-</td><td>0.00</td><td>0.01</td><td>1.33</td><td>1.33</td><td>1.36</td><td>4.79</td><td>8.37</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-EzgQw2Bx3gHRsL62VjhQa84ZT6DGoCRHyx5zMZpwcrPy.md">EzgQw2Bx3gHRsL62VjhQa84ZT6DGoCRHyx5zMZpwcrPy</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/VkdDVTH77J9McpLT1bQd2C9KxwtvFggaG2b2nMpzZGQ?locale=en">VkdDVTH77J9McpLT1bQd2C9KxwtvFggaG2b2nMpzZGQ</a></td><td>8.50</td><td>8.45</td><td>8.35</td><td>8.25</td><td>8.22</td><td>8.23</td><td>8.11</td><td>7.77</td><td>7.55</td><td>7.34</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-FXrzBb4KBTiQsVdSprYtKE4nZUvQWc7rgG5Z2BF9mUXd.md">FXrzBb4KBTiQsVdSprYtKE4nZUvQWc7rgG5Z2BF9mUXd</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/3hfyxXeuzA26dwWiP1fZid1LGbSFs8vfqXc5bKnKq6RH?locale=en">3hfyxXeuzA26dwWiP1fZid1LGbSFs8vfqXc5bKnKq6RH</a></td><td>6.34</td><td>6.31</td><td>6.21</td><td>6.16</td><td>6.10</td><td>6.13</td><td>5.96</td><td>6.04</td><td>8.63</td><td>8.46</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-Fd7btgySsrjuo25CJCj7oE7VPMyezDhnx7pZkj2v69Nk.md">Fd7btgySsrjuo25CJCj7oE7VPMyezDhnx7pZkj2v69Nk</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1?locale=en">CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1</a></td><td>160.22</td><td>159.03</td><td>159.21</td><td>159.00</td><td>158.08</td><td>159.24</td><td>158.24</td><td>161.10</td><td>158.03</td><td>156.74</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-GCjDnoCZwr5ARhrUJABUPCXTASb81NDA6RYZfUZ2L39C.md">GCjDnoCZwr5ARhrUJABUPCXTASb81NDA6RYZfUZ2L39C</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Y5QQUfYcTfJSTbV38jnvSzdGjw4F9yVipknUdAWKwV3?locale=en">Y5QQUfYcTfJSTbV38jnvSzdGjw4F9yVipknUdAWKwV3</a></td><td>7.40</td><td>8.17</td><td>8.05</td><td>7.27</td><td>7.94</td><td>7.70</td><td>7.84</td><td>1.75</td><td>3.41</td><td>7.05</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-GKMB5bKjFreAaNKGigYZf6URirurp5GHyUoDJepF6GmB.md">GKMB5bKjFreAaNKGigYZf6URirurp5GHyUoDJepF6GmB</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/FvReBpAmonk6XpuYJmDAHimti5B7wNUW6oY7oz9pojnH?locale=en">FvReBpAmonk6XpuYJmDAHimti5B7wNUW6oY7oz9pojnH</a></td><td>8.17</td><td>8.12</td><td>3.91</td><td>3.74</td><td>3.64</td><td>3.82</td><td>3.87</td><td>1.75</td><td>3.39</td><td>5.21</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-Ge8M91yymAsZmjCyeAVCpxGA9k62CR8cxf4AhP1c38UP.md">Ge8M91yymAsZmjCyeAVCpxGA9k62CR8cxf4AhP1c38UP</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/GjYzNftUGedbXZXMVm8P9HsvJDosFgPEwJSzjswuDZv6?locale=en">GjYzNftUGedbXZXMVm8P9HsvJDosFgPEwJSzjswuDZv6</a></td><td>10.18</td><td>9.50</td><td>10.00</td><td>9.94</td><td>9.88</td><td>9.89</td><td>9.78</td><td>9.45</td><td>9.20</td><td>8.98</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-HPN8ANgpeF5mcViFW6fTCXGWPdQ6LhRWvcx86JVEkFC2.md">HPN8ANgpeF5mcViFW6fTCXGWPdQ6LhRWvcx86JVEkFC2</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/Cva4NEnBRYfFv8i3RtcMTbEYgyVNmewk2aAgh4fco2mP?locale=en">Cva4NEnBRYfFv8i3RtcMTbEYgyVNmewk2aAgh4fco2mP</a></td><td>5.42</td><td>8.12</td><td>7.99</td><td>7.98</td><td>7.78</td><td>7.91</td><td>7.75</td><td>7.42</td><td>6.80</td><td>7.01</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-HQATLHBJcU7DET6b6NWNMpfsZVZ1PRnbfkCtcFCT5reo.md">HQATLHBJcU7DET6b6NWNMpfsZVZ1PRnbfkCtcFCT5reo</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/9Tu3yadiFa7xFkoTuurz1qh5FzTehn5aQ6m6C5kebQMQ?locale=en">9Tu3yadiFa7xFkoTuurz1qh5FzTehn5aQ6m6C5kebQMQ</a></td><td>8.41</td><td>8.23</td><td>8.17</td><td>8.26</td><td>8.06</td><td>8.17</td><td>7.90</td><td>7.67</td><td>7.20</td><td>7.26</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-Hm8YczcD3tqoHmESwK9ySdFJX3uBBLBMqNKWm3LghW8W.md">Hm8YczcD3tqoHmESwK9ySdFJX3uBBLBMqNKWm3LghW8W</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/EsQSoAgPq6wiG8aF3ogzkGWxpyfpuWe9P3GMv7JzCbpU?locale=en">EsQSoAgPq6wiG8aF3ogzkGWxpyfpuWe9P3GMv7JzCbpU</a></td><td>1.35</td><td>1.34</td><td>5.38</td><td>5.45</td><td>5.32</td><td>5.35</td><td>5.23</td><td>5.27</td><td>7.18</td><td>7.05</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-HzrEstnLfzsijhaD6z5frkSE2vWZEH5EUfn3bU9swo1f.md">HzrEstnLfzsijhaD6z5frkSE2vWZEH5EUfn3bU9swo1f</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/DQ7D6ZRtKbBSxCcAunEkoTzQhCBKLPdzTjPRRnM6wo1f?locale=en">DQ7D6ZRtKbBSxCcAunEkoTzQhCBKLPdzTjPRRnM6wo1f</a></td><td>47.92</td><td>47.65</td><td>47.61</td><td>47.57</td><td>47.28</td><td>47.46</td><td>47.19</td><td>47.69</td><td>46.66</td><td>46.19</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-JB7V8DwXyGgKLEhbBMaw2Z49SYRfJzMmuB4woi9huH7m.md">JB7V8DwXyGgKLEhbBMaw2Z49SYRfJzMmuB4woi9huH7m</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/5GJ8DWfzxXguFpFAaZsyDDVp3kp7ymHrBvMA5XRjpvbV?locale=en">5GJ8DWfzxXguFpFAaZsyDDVp3kp7ymHrBvMA5XRjpvbV</a></td><td>5.37</td><td>5.53</td><td>1.15</td><td>1.26</td><td>1.33</td><td>4.73</td><td>5.36</td><td>1.75</td><td>1.55</td><td>6.55</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-zeiUD366nfvMkbMn78QzyhWs927JASUb8ftaCNEyjCH.md">zeiUD366nfvMkbMn78QzyhWs927JASUb8ftaCNEyjCH</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/9nyiCpH8tfzSDXWP5BX5u5Fyi7Mz1DcMPp5a7aUhDybE?locale=en">9nyiCpH8tfzSDXWP5BX5u5Fyi7Mz1DcMPp5a7aUhDybE</a></td><td>8.73</td><td>8.66</td><td>8.58</td><td>8.39</td><td>8.45</td><td>8.46</td><td>8.34</td><td>7.98</td><td>7.76</td><td>7.55</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-EEfcHG8T1K4mDPybyaR5hfPGtDjkHMXhSascuxAQKZxL.md">EEfcHG8T1K4mDPybyaR5hfPGtDjkHMXhSascuxAQKZxL</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/BTuRg32CvZjxh6LEA1fM1zv4dDQ9UwKWBH9fAn9CTY6a?locale=en">BTuRg32CvZjxh6LEA1fM1zv4dDQ9UwKWBH9fAn9CTY6a</a></td><td>-</td><td>-</td><td>0.01</td><td>0.01</td><td>1.33</td><td>1.34</td><td>1.33</td><td>1.39</td><td>7.21</td><td>7.15</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-GcA3bUY9X797ivJcFmG67R5Ghy62zT4bWXubLgzSGk8B.md">GcA3bUY9X797ivJcFmG67R5Ghy62zT4bWXubLgzSGk8B</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/HS2kSsdkGF7iktkPYFVsWWkUwEwj8jgvuKZiF6JNbGgy?locale=en">HS2kSsdkGF7iktkPYFVsWWkUwEwj8jgvuKZiF6JNbGgy</a></td><td>-</td><td>-</td><td>-</td><td>-</td><td>0.01</td><td>0.01</td><td>1.20</td><td>1.36</td><td>1.70</td><td>1.70</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-BuonuQoAR74GoMwCFhxKWVWWSGGt2wfbNmQ3cizaJ97G.md">BuonuQoAR74GoMwCFhxKWVWWSGGt2wfbNmQ3cizaJ97G</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/9FZWpUMfXZ3993g2BfqSFg7xcx9iUCxQwKeYzr2WQCM1?locale=en">9FZWpUMfXZ3993g2BfqSFg7xcx9iUCxQwKeYzr2WQCM1</a></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>0.00</td><td>0.01</td><td>0.01</td><td>1.52</td><td>1.70</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-3rdim3YgHsaVwhZbadTcoWjsceLTAwW4yyXydXC1iAaW.md">3rdim3YgHsaVwhZbadTcoWjsceLTAwW4yyXydXC1iAaW</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/CbfNYizgamRF1jsBig9SLJTZsFawPfJYuhim5dVNBrgm?locale=en">CbfNYizgamRF1jsBig9SLJTZsFawPfJYuhim5dVNBrgm</a></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>0.01</td><td>0.01</td><td>1.65</td><td>1.70</td></tr>
+                
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-FxhKTay63tcYR8WuXwRvWJCmAV239fXizqRXNMMMqhjB.md">FxhKTay63tcYR8WuXwRvWJCmAV239fXizqRXNMMMqhjB</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/3ZHY9PQtp7MyznRcHRAkFYrTWinQzidYAQxNjBeyzyr9?locale=en">3ZHY9PQtp7MyznRcHRAkFYrTWinQzidYAQxNjBeyzyr9</a></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>0.01</td><td>0.01</td><td>0.39</td></tr>
+                
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            function table_sorter(sortName, sortOrder, data) {
+                var order = sortOrder === 'desc' ? -1 : 1;
+                data.sort(function (a, b) {
+                    var _a = a[sortName] == "-" ? 9999999.0 : parseFloat(a[sortName]);
+                    var _b = b[sortName] == "-" ? 9999999.0 : parseFloat(b[sortName]);
+                    if (_a > _b) {
+                        return order;
+                    }
+                    if (_a < _b) {
+                        return -1 * order;
+                    }
+                    return 0;
+                });
+              }
+        </script>        </main>
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="text-muted">© 2021 <a href="https://nodescrew.com/">NodesCrew</a></span>
+            </div>
+
+            
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+
+    </body>
+</html>
