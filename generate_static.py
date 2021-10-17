@@ -111,7 +111,7 @@ def get_signups_context():
     epoch_positions = defaultdict(list)
 
     # Map slots to positoons
-    for epoch_file in sorted(glob.glob("data/signups/*.txt")):
+    for epoch_file in sorted(glob.glob("data/signups/epoches/*.txt")):
         epoch_no = int(epoch_file.split("/")[-1][0:3])
         epoches.add(epoch_no)
 
@@ -122,7 +122,7 @@ def get_signups_context():
         epoch_positions[epoch_no].sort()
 
     # Iterate
-    for epoch_file in sorted(glob.glob("data/signups/*.txt")):
+    for epoch_file in sorted(glob.glob("data/signups/epoches/*.txt")):
         epoch_no = int(epoch_file.split("/")[-1][0:3])
         epoches.add(epoch_no)
 

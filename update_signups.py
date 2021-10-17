@@ -1,10 +1,12 @@
 # coding: utf-8
+import os
 
 import config
 
 import glob
 import base58
 import base64
+import datetime
 
 from lib.rpc import call_rpc
 from lib.rpc import get_epoch
@@ -69,17 +71,33 @@ def get_first_transaction(tn_pubkey):
     return min(trx_slots)
 
 
-def save_epoch_data(epoch_no, data):
+def save_data(path, data):
     """ Save data into file
     """
-    with open(f"data/signups/{epoch_no}.txt", "w+") as w:
+    with open(path, "w+") as w:
         for tn_pubkey, first_trx in data.items():
             w.write(f"{tn_pubkey};{first_trx}\n")
+
+
+def save_epoch_data(epoch_no, data):
+    """ Save data by epoches
+    """
+    save_data(f"data/signups/epoches/{epoch_no}.txt", data)
+
+
+def save_date_data(data):
+    """ Save data by dates
+    """
+    today = datetime.datetime.today().strftime('%Y-%m-%d')
+    save_data(f"data/signups/dates/{today}.txt", data)
 
 
 def update_signups():
     """ Update approve states
     """
+    os.makedirs("data/signups/dates", exist_ok=True)
+    os.makedirs("data/signups/epoches", exist_ok=True)
+
     epoch_no = get_epoch(cluster_rpc=config.RPC_TESTNET)
 
     cached_validators = dict()
@@ -118,8 +136,10 @@ def update_signups():
         cached_validators[tn_pubkey] = first_trx
 
         if not len(cached_validators) % 10:
+            save_date_data(cached_validators)
             save_epoch_data(epoch_no, cached_validators)
 
+    save_date_data(cached_validators)
     save_epoch_data(epoch_no, cached_validators)
 
 
