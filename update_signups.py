@@ -1,9 +1,11 @@
 # coding: utf-8
 import os
+import time
 
 import config
 
 import glob
+import time
 import base58
 import base64
 import datetime
@@ -131,6 +133,9 @@ def update_signups():
         first_trx = get_first_transaction(tn_pubkey)
         if not first_trx:
             print("Unable to get first transaction for %s" % tn_pubkey)
+            continue
+
+        time.sleep(5)
 
         # Prevent duplicate request
         cached_validators[tn_pubkey] = first_trx
