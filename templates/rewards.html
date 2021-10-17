@@ -21,8 +21,8 @@
                 <tbody>
                 {% for node_pubkey, node in nodes.items() %}
                     <tr>
-                        <td>{{ node.node_pubkey }}</td>
-                        <td>{{ node.vote_pubkey }}</td>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-{{ node.node_pubkey }}.md">{{ node.node_pubkey }}</a></td>
+                        <td><a target="_blank" href="https://www.validators.app/vote_accounts/mainnet/{{ node.vote_pubkey }}?locale=en">{{ node.vote_pubkey }}</a></td>
 
                         {%- for epoch in epoches -%}
                             <td>{{ node.rewards[epoch] or "-" }}</td>
