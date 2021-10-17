@@ -50,6 +50,12 @@ def get_index_context():
 def get_onboarding_context():
     """ Get vars for onboarding-history.html template
     """
+    def node_scoring(node):
+        bonus_13 = float(node["bonus_13"] or 0)
+        bonus_207 = float(node["bonus_207"] or 0)
+        credits_64p = float(node["credits_64p"] or 0)
+        return "%.5f" % ((bonus_207 * .25) + (bonus_13 * .25) + (credits_64p * .5))
+
     nodes = dict()
     epoches = set()
     states = get_actual_states()
@@ -89,6 +95,7 @@ def get_onboarding_context():
                 nodes[tn_pubkey]["bonus_207"] = bonus_207
                 nodes[tn_pubkey]["credits_64"] = credits_64
                 nodes[tn_pubkey]["credits_64p"] = credits_64p
+                nodes[tn_pubkey]["scoring"] = node_scoring(nodes[tn_pubkey])
                 nodes[tn_pubkey]["positions"][epoch_no] = node_position
 
     epoches = list(sorted(epoches))

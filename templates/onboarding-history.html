@@ -18,6 +18,7 @@
                         <th scope="col" data-field="bonus_13" data-sortable="true" data-visible="false">Bonus 13</th>
                         <th scope="col" data-field="credits_64" data-sortable="true" data-visible="false">Credits</th>
                         <th scope="col" data-field="credits_64p" data-sortable="true" data-visible="false">Credits %</th>
+                        <th scope="col" data-field="scoring" data-sortable="true" data-visible="false">Scoring</th>
                         <th scope="col" data-field="state">State</th>
                     </tr>
                 </thead>
@@ -35,7 +36,8 @@
                         <td>{{ node.bonus_207 }}</td>
                         <td>{{ node.bonus_13 }}</td>
                         <td>{{ node.credits_64 }}</td>
-                        <td>{{ node.credits_64p }}</td>
+                        <td>{{ node.credits_64p }}
+                        <td>{{ node.scoring }}</td>
                         <td>
                             {% if node.state == "Approved" %}
                                 <span class="badge badge-success" title="Approved">A</span>
