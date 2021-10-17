@@ -148,12 +148,43 @@ def get_signups_context():
                 datetime=datetime.datetime.utcnow())
 
 
+def get_rewards_context():
+    """ Get vars for rewards.html template
+    """
+    nodes = dict()
+    epoches = set()
+
+    # Iterate
+    for epoch_file in sorted(glob.glob("data/rewards/*.txt")):
+        epoch_no = int(epoch_file.split("/")[-1][0:3])
+        epoches.add(epoch_no)
+
+        with open(epoch_file) as f:
+            for line in f:
+                node_pubkey, vote_pubkey, rewards = line.strip().split(";")
+                rewards = "%.2f" % (int(rewards) / 1000000000)
+
+                if node_pubkey not in nodes:
+                    nodes[node_pubkey] = {
+                        "node_pubkey": node_pubkey,
+                        "vote_pubkey": vote_pubkey,
+                        "rewards": defaultdict(dict)
+                    }
+
+                nodes[node_pubkey]["rewards"][epoch_no] = rewards
+
+    epoches = list(sorted(epoches))
+    return dict(nodes=nodes,
+                epoches=epoches,
+                datetime=datetime.datetime.utcnow())
+
 def generate_static():
     jinja2_loader = jinja2.FileSystemLoader("templates")
     jinja2_env = jinja2.Environment(loader=jinja2_loader)
 
     render(jinja2_env, "index", get_index_context())
     render(jinja2_env, "useful", get_index_context())
+    render(jinja2_env, "rewards", get_rewards_context())
     render(jinja2_env, "signups", get_signups_context())
     render(jinja2_env, "onboarding-history", get_onboarding_context())
 

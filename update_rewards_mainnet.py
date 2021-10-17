@@ -1,24 +1,40 @@
 # coding: utf-8
-import collections
-import glob
-import os
-
 import config
 
 from lib.rpc import get_epoch
 from lib.rpc import get_vote_accounts
 
+import os
+import re
+import glob
 import json
 import datetime
+import requests
 import subprocess
+import collections
 from contextlib import suppress
 
-MIN_COMMISSION = 8
+MIN_COMMISSION = 1
 MAX_COMMISSION = 10
+
+RE_GITHUB_VALIDATORS = re.compile(r'">Validator ([a-zA-Z0-9]+)')
+
+
+def github_get_pubkeys():
+    print("Send github request")
+    url = "https://github.com/solana-labs/stake-o-matic/wiki/"
+    res = requests.get(url)
+
+    validators = set(RE_GITHUB_VALIDATORS.findall(res.text))
+    print("Total validators from stake-o-matic: %d" % len(validators))
+
+    return validators
 
 
 def save_data(data):
-    pass
+    for epoch_no, epoch_rewards in data.items():
+        with open(f"data/rewards/{epoch_no}.txt", "w+") as w:
+            w.write("\n".join(sorted(epoch_rewards)))
 
 
 def grab_rewards(vote_account):
@@ -43,8 +59,12 @@ def update_rewards_mainnet():
     """
     os.makedirs("data/rewards", exist_ok=True)
 
+    # Get epoch
     curr_epoch = get_epoch(cluster_rpc=config.RPC_MAINNET)
     prev_epoch = curr_epoch - 1
+
+    # Get github validators
+    github_pubkeys = github_get_pubkeys()
 
     # Prevent duplicate requests
     epoch_data = collections.defaultdict(list)
@@ -68,8 +88,13 @@ def update_rewards_mainnet():
             continue
 
         node_pubkey = node["nodePubkey"]
+
         if node_pubkey in last_epoch_pubkeys:
-            print(f"Skip grabbing for {node_pubkey} - already in database")
+            print(f"Skip grabbing for {node_pubkey} - already in our database")
+            continue
+
+        if node_pubkey not in github_pubkeys:
+            print(f"Skip grabbing for {node_pubkey} - not in bot database")
             continue
 
         vote_pubkey = node["votePubkey"]
@@ -78,9 +103,8 @@ def update_rewards_mainnet():
             data = map(str, [node_pubkey, vote_pubkey, lamports])
             epoch_data[epoch_no].append(";".join(data))
 
-        for epoch_no, epoch_rewards in epoch_data.items():
-            with open(f"data/rewards/{epoch_no}.txt", "w+") as w:
-                w.write("\n".join(sorted(epoch_rewards)))
+            save_data(epoch_data)
+
 
 
 if __name__ == "__main__":
