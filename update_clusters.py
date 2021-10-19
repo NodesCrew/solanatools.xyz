@@ -33,6 +33,7 @@ def update_cluster(cluster_rpc, cluster_dir):
 
     # Get stake info
     vote_accounts = get_vote_accounts(cluster_rpc=cluster_rpc, merge=False)
+
     for state, validators in vote_accounts.items():
         for validator in validators:
             pubkey = validator["nodePubkey"]

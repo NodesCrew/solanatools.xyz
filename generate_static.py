@@ -54,7 +54,8 @@ def get_onboarding_context():
         bonus_13 = float(node["bonus_13"] or 0)
         bonus_207 = float(node["bonus_207"] or 0)
         credits_64p = float(node["credits_64p"] or 0)
-        return "%.5f" % ((bonus_207 * .25) + (bonus_13 * .25) + (credits_64p * .5))
+        return "%.5f" % (
+                (bonus_207 * .25) + (bonus_13 * .25) + (credits_64p * .5))
 
     nodes = dict()
     epoches = set()

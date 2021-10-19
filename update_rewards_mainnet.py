@@ -44,7 +44,7 @@ def grab_rewards(vote_account):
         "solana",
         "-um", "vote-account",  vote_account,
         "--with-rewards",
-        "--num-rewards-epochs", "10",
+        "--num-rewards-epochs", "3",
         "--output", "json"
     ]
 
