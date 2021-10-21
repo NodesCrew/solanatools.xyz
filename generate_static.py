@@ -116,7 +116,9 @@ def get_signups_context():
     """
     nodes = dict()
     epoches = set()
+    github_validators = defaultdict(set)
     epoch_positions = defaultdict(list)
+
 
     # Map slots to positoons
     for epoch_file in sorted(glob.glob("data/signups/epoches/*.txt")):

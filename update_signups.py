@@ -108,9 +108,11 @@ def update_signups():
     for p in sorted(glob.glob("data/validators-testnet/*.txt"), reverse=True):
         with open(p) as f:
             github_validators = set(x.strip() for x in f)
+    print(f"Total github validators before start: {len(github_validators)}")
+
 
     # Skip validators from cache
-    for p in sorted(glob.glob("data/signups/*.txt")):
+    for p in sorted(glob.glob("data/signups/epoches/*.txt")):
         with open(p) as f:
             for line in f:
                 line = line.strip()
@@ -122,12 +124,16 @@ def update_signups():
                     print(line)
                     exit(-1)
                 cached_validators[tn_pubkey] = first_trx
+    print(f"Total cached_validators before start: {len(cached_validators)}")
 
     for tn_pubkey in iter_signups():
         # Skip known validators
         if tn_pubkey in github_validators:
+            print(f"Skip github validator {tn_pubkey}")
             continue
+
         if tn_pubkey in cached_validators:
+            print(f"Skip cached validator {tn_pubkey}")
             continue
 
         first_trx = get_first_transaction(tn_pubkey)
@@ -135,7 +141,10 @@ def update_signups():
             print("Unable to get first transaction for %s" % tn_pubkey)
             continue
 
-        time.sleep(5)
+        else:
+            print(f"Got first transaction for {tn_pubkey}")
+
+        time.sleep(3)
 
         # Prevent duplicate request
         cached_validators[tn_pubkey] = first_trx
@@ -143,6 +152,7 @@ def update_signups():
         if not len(cached_validators) % 10:
             save_date_data(cached_validators)
             save_epoch_data(epoch_no, cached_validators)
+            print(f"Total cached_validators: {len(cached_validators)}")
 
     save_date_data(cached_validators)
     save_epoch_data(epoch_no, cached_validators)
