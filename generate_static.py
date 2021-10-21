@@ -116,9 +116,14 @@ def get_signups_context():
     """
     nodes = dict()
     epoches = set()
-    github_validators = defaultdict(set)
     epoch_positions = defaultdict(list)
+    github_validators = defaultdict(set)
 
+    # Read known validators from github (later will excluded from rating)
+    for epoch_file in sorted(glob.glob("data/validators-testnet/*.txt")):
+        epoch_no = int(epoch_file.split("/")[-1][0:3])
+        with open(epoch_file) as f:
+            github_validators[epoch_no] = set(x.strip() for x in f)
 
     # Map slots to positoons
     for epoch_file in sorted(glob.glob("data/signups/epoches/*.txt")):
@@ -127,7 +132,13 @@ def get_signups_context():
 
         with open(epoch_file) as f:
             for line in f:
-                _, slot = line.strip().split(";")
+                tn_pubkey, slot = line.strip().split(";")
+
+                # Skip validator if already in github
+                if tn_pubkey in github_validators[epoch_no]:
+                    print(f"Skip {tn_pubkey} as github validator")
+                    continue
+
                 epoch_positions[epoch_no].append(int(slot))
         epoch_positions[epoch_no].sort()
 
@@ -148,8 +159,13 @@ def get_signups_context():
                         "positions": defaultdict(dict),
                     }
 
-                position = epoch_positions[epoch_no].index(slot) + 1
-                nodes[tn_pubkey]["slots"][epoch_no] = int(slot)
+                try:
+                    position = epoch_positions[epoch_no].index(slot) + 1
+                    nodes[tn_pubkey]["slots"][epoch_no] = int(slot)
+                except ValueError:
+                    position = None
+                    nodes[tn_pubkey]["slots"][epoch_no] = None
+
                 nodes[tn_pubkey]["positions"][epoch_no] = position
 
     epoches = list(sorted(epoches))

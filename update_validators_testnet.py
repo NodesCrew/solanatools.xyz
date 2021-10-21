@@ -11,6 +11,8 @@ from lib.rpc import get_epoch
 GITHUB_URL = str("https://raw.githubusercontent.com/solana-labs/stake-o-matic/"
                  "master/bot/src/validator_list.rs")
 
+# GITHUB_URL = str("https://raw.githubusercontent.com/solana-labs/stake-o-matic/dfb0b8f56b64170c5fa5d47f660317beadaf37fb/bot/src/validator_list.rs")
+
 RE_PUBKEY = re.compile(r'"([a-zA-Z0-9]+)?",')
 
 DIR_TESTNET_VALIDATORS = "data/validators-testnet"
