@@ -3,48 +3,63 @@
         "cpu": "2288G",
         "ram": 64,
         "net": "200mbps",
-        "cluster": "testnet"
+        "cluster": "testnet",
+        "vote_pk": "DPcyvUKQuL4N4s8QVmUGWKWbbCQVCzFJEUuboMsLJmwK"
     },
     "GKGba31Zdwu7qRLBYGmPCkk9wwfJ2WH2a4FKxb3xfJuV": {
         "cpu": "2288G",
         "ram": 64,
         "net": "200mbps",
-        "cluster": "testnet"
+        "cluster": "testnet",
+        "vote_pk": "9yGFrCLt4nkQsHq8E5QjWqVPkNgxZe7H3wJPjwbNvp91"
     },
     "C8yQnRcUMCvP7ZpkbhPUx2TXspyojKNWttdVWj77kAWg": {
         "cpu": "5800X",
         "ram": 64,
-        "cluster": "testnet"
+        "cluster": "testnet",
+        "vote_pk": "4iqTAe6WRJuYKPubh1b2hqHa6QEZCbCsEGne2dru67vS"
     },
     "F26NYjNDpKEbSYp8rdkXvKNUgom5HCfqdbdvCkyg7iKB": {
         "cpu": "5900X",
         "ram": 128,
         "net": "1gbps",
-        "cluster": "mainnet"
-    },
-    "DGy8Ri8GzayCUrrKkiTbQT4mvaeD5u5WpRbm76fJRAT7": {
-        "cpu": "2288G",
-        "ram": 64,
-        "net": "1gbps",
-        "cluster": "testnet"
+        "cluster": "mainnet",
+        "vote_pk": "DEmZmtt9bDeDcBMExjKhpCFnA5yj46XbAkzu61CXPKFh"
     },
     "8E9KWWqX1JMNu1YC3NptLA6M8cGqWRTccrF6T1FDnYRJ": {
         "cpu": "3900X",
         "ram": 64,
         "net": "1gbps",
-        "cluster": "testnet"
-    },
-    "93Q99nhdKjuSe6WNXgMBbC3s8QVQEAoHKt91PNRkUkMn": {
-        "cpu": "2288G",
-        "ram": 128,
-        "net": "1gbps",
-        "cluster": "mainnet"
+        "cluster": "testnet",
+        "vote_pk": "hwtqyGyDeqqegG9b1oMdBQdyzYvCFgySXtvG7rQGuTf"
     },
     "3CKKAoVi94EnfX8QcVxEmk8CAvZTc6nAYzXp1WkSUofX": {
         "cpu": "2288G",
         "ram": 128,
         "net": "1gbps",
-        "clister": "mainnet"
+        "clister": "mainnet",
+        "vote_pk": "4MU64AyHBkRBUAYgAm91sP5vFgzUUgFHuS82CVhE8Q2Q"
+    },
+    "3RXKQBRv7xKTQeNdLSPhCiD4QcUfxEQ12rtgUkMf5LnS": {
+        "cpu": "EPYC 7282",
+        "ram": 128,
+        "net": "1gbps",
+        "cluster": "mainnet",
+        "vote_pk": "BxFf75Vtzro2Hy3coFHKxFMZo5au8W7J8BmLC3gCMotU"
+    },
+    "BxN7s13iMFRCZEumBRzUpH9E25V77dL7VgSig18MYKbm": {
+        "cpu": "EPYC 7282",
+        "ram": 128,
+        "net": "1gbps",
+        "cluster": "mainnet",
+        "vote_pk": "3Ueg3qrAVv95tJzTiKM2dd33NswZT77yRf9wXcBDCn2c"
+    },
+    "GGyi5gNaZYHpij4uM7UE6EuN93dvyMiKMphNWLfTPBb8": {
+        "cpu": "EPYC 7351P",
+        "ram": 128,
+        "net": "1gbps",
+        "cluster": "testnet",
+        "vote_pk": "9pbEEzbb79hwdbu6GGXhj7ETFe9aPF8KVmHuHPjHP522"
     }
 }
 
