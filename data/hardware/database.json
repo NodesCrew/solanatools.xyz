@@ -39,6 +39,12 @@
         "ram": 128,
         "net": "1gbps",
         "cluster": "mainnet"
+    },
+    "3CKKAoVi94EnfX8QcVxEmk8CAvZTc6nAYzXp1WkSUofX": {
+        "cpu": "2288G",
+        "ram": 128,
+        "net": "1gbps",
+        "clister": "mainnet"
     }
 }
 
