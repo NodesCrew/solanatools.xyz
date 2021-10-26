@@ -10,6 +10,7 @@
             <table class="table table-striped table-hover" data-toggle="table" data-search="true" data-custom-sort="table_sorter" data-sort-order="asc" data-sort-name="epoch_{{ epoches | max }}" data-show-columns="true">
                 <thead>
                     <tr>
+                        <th scope="col" data-field="favorite" data-sortable="true">Fav</th>
                         <th scope="col" data-field="testnet_pk">Testnet PK</th>
 
                         {% for epoch in epoches %}
@@ -18,9 +19,12 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="tbody">
                 {% for node_pubkey, node in nodes.items() %}
-                    <tr>
+                    <tr id="{{ node.testnet_pk }}">
+                        <td>
+                            <i class="fav-icon bi bi-star" id="fav-{{ node.testnet_pk }}"></i>
+                        </td>
                         <td>{{ node.testnet_pk }}</td>
                         {%- for epoch in epoches -%}
                             <td title="Slot: {{ node.slots[epoch] or '-' }}">{{ node.positions[epoch] or "-" }}</td>

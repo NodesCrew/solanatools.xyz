@@ -25,9 +25,6 @@
             const FAV_LSN = "favorites";
 
             function table_sorter(sortName, sortOrder, data) {
-
-                let favs = localStorage.getItem(FAV_LSN).split(";");
-
                 let order = sortOrder === 'desc' ? -1 : 1;
 
                 data.sort(function(a, b) {

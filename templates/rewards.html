@@ -10,6 +10,7 @@
             <table class="table table-striped table-hover" data-toggle="table" data-search="true" data-custom-sort="table_sorter" data-sort-order="asc" data-sort-name="epoch_{{ epoches | max }}" data-show-columns="true">
                 <thead>
                     <tr>
+                        <th scope="col" data-field="favorite" data-sortable="true">Fav</th>
                         <th scope="col" data-field="node_pubkey">Mainnet PK</th>
                         <th scope="col" data-field="vote_pubkey">Vote account</th>
                         {% for epoch in epoches %}
@@ -18,9 +19,12 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="tbody">
                 {% for node_pubkey, node in nodes.items() %}
-                    <tr>
+                    <tr id="{{ node.node_pubkey }}">
+                        <td>
+                            <i class="fav-icon bi bi-star" id="fav-{{ node.node_pubkey }}"></i>
+                        </td>
                         <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-{{ node.node_pubkey }}.md">{{ node.node_pubkey }}</a></td>
                         <td><a target="_blank" href="https://www.validators.app/vote_accounts/{{ node.vote_pubkey }}?locale=en&network=mainnet">{{ node.vote_pubkey }}</a></td>
 
