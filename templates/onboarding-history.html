@@ -9,17 +9,21 @@
                         <th scope="col" data-field="favorite" data-sortable="true">Fav</th>
                         <th scope="col" data-field="testnet_pk">Testnet PK</th>
                         <th scope="col" data-field="mainnet_beta_pk" data-visible="false">Mainnet PK</th>
-                        <th scope="col" data-field="tds_onboarding_group" data-sortable="true">TdS</th>
+                        <th scope="col" data-field="tds_onboarding_group" data-sortable="true" data-visible="false">TdS</th>
 
-                        {% for epoch in epoches %}
+                        {% for epoch in epoches[:-5] %}
+                            <th scope="col" data-field="epoch_{{ epoch }}" data-sortable="true" data-visible="false">{{ epoch }}</th>
+                        {% endfor %}
+
+                        {% for epoch in epoches[-5:] %}
                             <th scope="col" data-field="epoch_{{ epoch }}" data-sortable="true">{{ epoch }}</th>
                         {% endfor %}
 
-                        <th scope="col" data-field="bonus_207" data-sortable="true" data-visible="false">Bonus 207</th>
-                        <th scope="col" data-field="bonus_13" data-sortable="true" data-visible="false">Bonus 13</th>
-                        <th scope="col" data-field="credits_64" data-sortable="true" data-visible="false">Credits</th>
-                        <th scope="col" data-field="credits_64p" data-sortable="true" data-visible="false">Credits %</th>
-                        <th scope="col" data-field="scoring" data-sortable="true" data-visible="false">Scoring</th>
+                        <th scope="col" data-field="bonus_207" data-sortable="true">Bonus 207</th>
+                        <th scope="col" data-field="bonus_13" data-sortable="true">Bonus 13</th>
+                        <th scope="col" data-field="credits_64" data-sortable="true" >Credits</th>
+                        <th scope="col" data-field="credits_64p" data-sortable="true">Credits %</th>
+                        <th scope="col" data-field="scoring" data-sortable="true">Scoring</th>
                         <th scope="col" data-field="state">State</th>
                     </tr>
                 </thead>
@@ -37,6 +41,7 @@
                         {%- for epoch in epoches -%}
                             <td>{{ node.positions[epoch] or "-" }}</td>
                         {%- endfor -%}
+
                         <td>{{ node.bonus_207 }}</td>
                         <td>{{ node.bonus_13 }}</td>
                         <td>{{ node.credits_64 }}</td>
