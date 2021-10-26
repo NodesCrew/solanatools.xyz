@@ -6,25 +6,25 @@
             <table class="table table-striped table-hover" data-toggle="table" data-search="true" data-custom-sort="table_sorter" data-sort-order="asc" data-sort-name="epoch_{{ epoches | max }}" data-show-columns="true">
                 <thead>
                     <tr>
-                        <th scope="col" data-field="favorite" data-sortable="true">Fav</th>
+                        <th scope="col" data-field="favorite" data-sortable="true">F</th>
                         <th scope="col" data-field="testnet_pk">Testnet PK</th>
                         <th scope="col" data-field="mainnet_beta_pk" data-visible="false">Mainnet PK</th>
                         <th scope="col" data-field="tds_onboarding_group" data-sortable="true" data-visible="false">TdS</th>
 
-                        {% for epoch in epoches[:-5] %}
+                        {% for epoch in epoches[:-6] %}
                             <th scope="col" data-field="epoch_{{ epoch }}" data-sortable="true" data-visible="false">{{ epoch }}</th>
                         {% endfor %}
 
-                        {% for epoch in epoches[-5:] %}
+                        {% for epoch in epoches[-6:] %}
                             <th scope="col" data-field="epoch_{{ epoch }}" data-sortable="true">{{ epoch }}</th>
                         {% endfor %}
 
-                        <th scope="col" data-field="bonus_207" data-sortable="true">Bonus 207</th>
-                        <th scope="col" data-field="bonus_13" data-sortable="true">Bonus 13</th>
-                        <th scope="col" data-field="credits_64" data-sortable="true" >Credits</th>
-                        <th scope="col" data-field="credits_64p" data-sortable="true">Credits %</th>
-                        <th scope="col" data-field="scoring" data-sortable="true">Scoring</th>
-                        <th scope="col" data-field="state">State</th>
+                        <th scope="col" data-field="bonus_207" data-sortable="true">Bonus207</th>
+                        <th scope="col" data-field="bonus_13" data-sortable="true">Bonus13</th>
+                        <th scope="col" data-field="credits_64" data-sortable="true" >Creds</th>
+                        <th scope="col" data-field="credits_64p" data-sortable="true">Creds%</th>
+                        <th scope="col" data-field="scoring" data-sortable="true">Score</th>
+                        <th scope="col" data-field="state" title="State">St</th>
                     </tr>
                 </thead>
 
