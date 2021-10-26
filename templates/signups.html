@@ -6,8 +6,6 @@
             <strong>Attention!</strong> This table is not official and is based only on the order of key binding during registration!
         </section>
 
-
-
         <div class="col-sm-12">
             <table class="table table-striped table-hover" data-toggle="table" data-search="true" data-custom-sort="table_sorter" data-sort-order="asc" data-sort-name="epoch_{{ epoches | max }}" data-show-columns="true">
                 <thead>
@@ -17,7 +15,6 @@
                         {% for epoch in epoches %}
                             <th scope="col" data-field="epoch_{{ epoch }}" data-sortable="true">{{ epoch }}</th>
                         {% endfor %}
-
                     </tr>
                 </thead>
 
@@ -25,34 +22,13 @@
                 {% for node_pubkey, node in nodes.items() %}
                     <tr>
                         <td>{{ node.testnet_pk }}</td>
-
                         {%- for epoch in epoches -%}
                             <td title="Slot: {{ node.slots[epoch] or '-' }}">{{ node.positions[epoch] or "-" }}</td>
                         {%- endfor -%}
-
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-
-        <script>
-            function table_sorter(sortName, sortOrder, data) {
-                var order = sortOrder === 'desc' ? -1 : 1;
-                data.sort(function (a, b) {
-                    var _a = a[sortName] == "-" ? 9999999.0 : parseFloat(a[sortName]);
-                    var _b = b[sortName] == "-" ? 9999999.0 : parseFloat(b[sortName]);
-
-                    if (_a > _b) {
-                        return order;
-                    }
-
-                    if (_a < _b) {
-                        return -1 * order;
-                    }
-                    return 0;
-                });
-              }
-        </script>
 
 {%- include "_layout_footer.html" -%}

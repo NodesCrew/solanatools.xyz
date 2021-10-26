@@ -11,10 +11,13 @@ from collections import defaultdict
 from lib.common import iter_file
 
 
-def render(jinja2_env, template_name, context):
+def render(jinja2_env, template_name, context, target=None):
     template = jinja2_env.get_template("%s.html" % template_name)
 
-    with open("www/%s.html" % template_name, "w+") as w:
+    if not target:
+        target = template_name
+
+    with open("www/%s.html" % target, "w+") as w:
         w.write(template.render(**context))
 
 
@@ -136,7 +139,7 @@ def get_signups_context():
 
                 # Skip validator if already in github
                 if tn_pubkey in github_validators[epoch_no]:
-                    print(f"Skip {tn_pubkey} as github validator")
+                    # print(f"Skip {tn_pubkey} as github validator")
                     continue
 
                 epoch_positions[epoch_no].append(int(slot))
@@ -204,7 +207,43 @@ def get_rewards_context():
                 epoches=epoches,
                 datetime=datetime.datetime.utcnow())
 
+
+def get_credits_context(cluster):
+    """ Render only last 5 epoches
+    """
+
+    nodes = dict()
+    epoches = []
+
+    for epoch_file in sorted(glob.glob(f"data/credits/{cluster}/*.txt")):
+        try:
+            epoch_no = int(epoch_file.split("/")[-1][0:3])
+            epoches.append(epoch_no)
+        except ValueError:
+            continue
+    epoches = epoches[-7:]
+
+    for epoch_no in epoches:
+        with open(f"data/credits/{cluster}/{epoch_no}.txt") as f:
+            for line in f:
+                pubkey, credits_ = line.split(";")
+                if pubkey not in nodes:
+                    nodes[pubkey] = {
+                        "pubkey": pubkey,
+                        "credits": defaultdict(dict),
+                    }
+                nodes[pubkey]["credits"][epoch_no] = int(credits_)
+
+    return {
+        "nodes": nodes,
+        "epoches": epoches,
+        "cluster": cluster
+    }
+
+
 def generate_static():
+    """ Generate all known pages
+    """
     jinja2_loader = jinja2.FileSystemLoader("templates")
     jinja2_env = jinja2.Environment(loader=jinja2_loader)
 
@@ -213,7 +252,13 @@ def generate_static():
     render(jinja2_env, "rewards", get_rewards_context())
     render(jinja2_env, "signups", get_signups_context())
     render(jinja2_env, "onboarding-history", get_onboarding_context())
+    render(jinja2_env, "problematic-hardware", get_index_context())
 
+    render(jinja2_env, "credits", get_credits_context("testnet"),
+           target="credits-testnet")
+
+    render(jinja2_env, "credits", get_credits_context("mainnet"),
+           target="credits-mainnet")
 
 
 if __name__ == "__main__":

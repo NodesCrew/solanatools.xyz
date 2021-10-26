@@ -40,20 +40,6 @@
         "clister": "mainnet",
         "vote_pk": "4MU64AyHBkRBUAYgAm91sP5vFgzUUgFHuS82CVhE8Q2Q"
     },
-    "3RXKQBRv7xKTQeNdLSPhCiD4QcUfxEQ12rtgUkMf5LnS": {
-        "cpu": "EPYC 7282",
-        "ram": 128,
-        "net": "1gbps",
-        "cluster": "mainnet",
-        "vote_pk": "BxFf75Vtzro2Hy3coFHKxFMZo5au8W7J8BmLC3gCMotU"
-    },
-    "BxN7s13iMFRCZEumBRzUpH9E25V77dL7VgSig18MYKbm": {
-        "cpu": "EPYC 7282",
-        "ram": 128,
-        "net": "1gbps",
-        "cluster": "mainnet",
-        "vote_pk": "3Ueg3qrAVv95tJzTiKM2dd33NswZT77yRf9wXcBDCn2c"
-    },
     "GGyi5gNaZYHpij4uM7UE6EuN93dvyMiKMphNWLfTPBb8": {
         "cpu": "EPYC 7351P",
         "ram": 128,

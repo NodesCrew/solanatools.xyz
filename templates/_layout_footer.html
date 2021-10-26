@@ -19,5 +19,99 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
 
+
+        <script>
+            // Local storage name
+            const FAV_LSN = "favorites";
+
+            function table_sorter(sortName, sortOrder, data) {
+
+                let favs = localStorage.getItem(FAV_LSN).split(";");
+
+                let order = sortOrder === 'desc' ? -1 : 1;
+
+                data.sort(function(a, b) {
+                    let _max = 5000;
+
+                    let _a = a[sortName] == "-" ? _max : parseFloat(a[sortName]);
+                    let _b = b[sortName] == "-" ? _max : parseFloat(b[sortName]);
+
+                    let minus = -1;
+
+                    if (_a > _b) {
+                        return order;
+                    }
+
+                    if (_a < _b) {
+                        return minus * order;
+                    }
+
+                    return 0;
+                });
+            }
+
+            function arrayRemove(arr, value) {
+                return arr.filter(function(ele) {
+                    return ele != value;
+                });
+            }
+
+            function handle_click() {
+                /**
+                 * Handle click on star
+                 */
+                let row_id = $(this).parent().parent().attr("id");
+                console.log("Handle row id: " + row_id);
+
+                let favs = localStorage.getItem(FAV_LSN).split(";");
+
+                if (favs.includes(row_id)) {
+                    favs = arrayRemove(favs, row_id);
+                    $("#fav-" + row_id).removeClass("bi-star-fill").addClass("bi-star");
+                } else {
+                    favs.push(row_id);
+                    $("#fav-" + row_id).removeClass("bi-star").addClass("bi-star-fill");
+                }
+                localStorage.setItem(FAV_LSN, favs.join(";"));
+
+                init_favorites();
+            }
+
+            function init_favorites() {
+                if (localStorage.getItem(FAV_LSN) === null) {
+                    localStorage.setItem(FAV_LSN, [].join(";"));
+                }
+
+                let favs = localStorage.getItem(FAV_LSN).split(";");
+                let tbody = $("#tbody");
+
+                $(".favs").removeClass("bi-star-fill").addClass("bi-star");
+
+                $(favs).each(function() {
+                    if(!this.toString()) {
+                        return;
+                    }
+
+                    let row_id = "#" + this.toString();
+                    let fav_id = "#fav-" + this.toString();
+
+                    $(fav_id).removeClass("bi-star").addClass("bi-star-fill");
+
+                    // Move row
+                    let row = $(row_id).clone();
+                    $(row_id).remove()
+                    tbody.prepend(row);
+                });
+
+                $(".fav-icon").off("click").click(handle_click);
+            }
+
+            $('table').bootstrapTable({
+                onSort: function(name, order) {
+                    setTimeout(init_favorites, 1);
+                }
+            });
+            init_favorites()
+        </script>
     </body>
 </html>
