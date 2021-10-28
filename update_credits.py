@@ -33,7 +33,6 @@ def update_credits(cluster_rpc: str, dir_name: str, ):
         tn_pubkey = validator["nodePubkey"]
         for epoch, epoch_creds, prev_epoch_creds in validator["epochCredits"]:
             credits[epoch][tn_pubkey] = epoch_creds
-            credits[epoch - 1][tn_pubkey] = prev_epoch_creds
 
     # Save data
     for epoch_no, data in credits.items():

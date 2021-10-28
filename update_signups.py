@@ -110,7 +110,6 @@ def update_signups():
             github_validators = set(x.strip() for x in f)
     print(f"Total github validators before start: {len(github_validators)}")
 
-
     # Skip validators from cache
     for p in sorted(glob.glob("data/signups/epoches/*.txt")):
         with open(p) as f:

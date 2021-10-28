@@ -53,6 +53,20 @@
         "net": "1gbps",
         "cluster": "testnet",
         "vote_pk": "GnufE1P6iyKdWv6v6SJQeSGaDgcKxr6fdqp91MDDyKwP"
+    },
+    "GtgtQLfqKjn3gaHuH7Fw64n49vr2DrYHiJAsSTNNscAE": {
+        "cpu": "AMD Ryzen 9 5950X",
+        "ram": 128,
+        "net": "1gbps",
+        "cluster": "testnet",
+        "vote_pk": "81iuTYDaeJ71XFGkPXNUuQ8gNvHQfBxpU7Vj2hzJ9Q4e"
+    },
+        "5fNzsJQxTQ93RJUgnGjvCQ8qjtYDGXjVMM8ERJs29YcG": {
+        "cpu": "AMD Ryzen 9 5950X",
+        "ram": 128,
+        "net": "1gbps",
+        "cluster": "testnet",
+        "vote_pk": "EvB62eh1M9222YKSaPTD3f5khp6X21rzp4zQYP45EvkJ"
     }
 }
 
