@@ -23,20 +23,27 @@ def update_credits(cluster_rpc: str, dir_name: str, ):
         epoch_no = int(epoch_path.rsplit("/", 1)[-1].split(".")[0])
 
         for line in iter_file(epoch_path):
-            pubkey, epoch_creds = line.split(";")
-            credits[epoch_no][pubkey] = int(epoch_creds)
+            pubkey, *credits_range = line.split(";")
+            credits_range = list(map(int, credits_range))
+            credits[epoch_no][pubkey] = credits_range
 
     # Grab fresh data from RPC
     for validator in get_vote_accounts(cluster_rpc=cluster_rpc, merge=1):
         pubkey = validator["nodePubkey"]
-        for epoch, epoch_creds, prev_epoch_creds in validator["epochCredits"]:
-            credits[epoch][pubkey] = epoch_creds
+        for epoch, *credits_range in validator["epochCredits"]:
+            credits[epoch][pubkey] = list(map(int, credits_range))
 
     # Save data
     for epoch_no, data in credits.items():
         with open(dir_name + "/%s.txt" % epoch_no, "w+") as w:
-            for pubkey, epoch_creds in sorted(data.items()):
-                w.write("%s;%s\n" % (pubkey, epoch_creds))
+            for pubkey, credits_range in sorted(data.items()):
+                if len(credits_range) < 2:
+                    print(f"Skip vote credits for {pubkey} savings because "
+                          f"wrong data received: {credits_range}")
+                    continue
+                w.write("%s;%s;%s\n" % (pubkey,
+                                        credits_range[0],
+                                        credits_range[1]))
 
 
 if __name__ == "__main__":
