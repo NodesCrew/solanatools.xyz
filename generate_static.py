@@ -226,13 +226,14 @@ def get_credits_context(cluster):
     for epoch_no in epoches:
         with open(f"data/credits/{cluster}/{epoch_no}.txt") as f:
             for line in f:
-                pubkey, credits_ = line.split(";")
+                pubkey, *credits_ = line.split(";")
                 if pubkey not in nodes:
                     nodes[pubkey] = {
                         "pubkey": pubkey,
                         "credits": defaultdict(dict),
                     }
-                nodes[pubkey]["credits"][epoch_no] = int(credits_)
+                credits_ = list(map(int, credits_))
+                nodes[pubkey]["credits"][epoch_no] = credits_[0] - credits_[1]
 
     return {
         "nodes": nodes,
