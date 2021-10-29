@@ -71,7 +71,7 @@ def update_credits_deep(cluster_rpc: str, data_dir: str):
     last_epoch_pubkeys = set()
 
     # Read exists data
-    for epoch_path in glob.glob("data/rewards/*.txt"):
+    for epoch_path in glob.glob(f"{data_dir}/*.txt"):
         epoch_no = int(epoch_path.rsplit("/", 1)[-1].split(".")[0])
         with open(epoch_path) as f:
             for line in f:
