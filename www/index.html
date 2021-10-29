@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 
         <style>
             main {
@@ -22,7 +23,7 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="index.html">Solana tools</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" data-group-by="true"  data-group-by-field="favorite">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -47,6 +48,12 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="useful.html">Useful</a>
                     </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="problematic-hardware.html">Problematic hardware</a>
+                    </li>
+
+
 
 <!--                    <li class="nav-item ">-->
 <!--                        <a class="nav-link" href="credits-ranking.html">Voting</a>-->
@@ -88,12 +95,6 @@
         <tbody>
         
             <tr>
-                <td>1.6.22</td>
-                <td>1</td>
-                <td>0.000%</td>
-            </tr>
-        
-            <tr>
                 <td>1.7.10</td>
                 <td>2</td>
                 <td>0.000%</td>
@@ -107,14 +108,14 @@
         
             <tr>
                 <td>1.7.13</td>
-                <td>17</td>
-                <td>0.008%</td>
+                <td>4</td>
+                <td>0.007%</td>
             </tr>
         
             <tr>
                 <td>1.7.14</td>
-                <td>6</td>
-                <td>0.001%</td>
+                <td>4</td>
+                <td>0.000%</td>
             </tr>
         
             <tr>
@@ -143,26 +144,26 @@
         
             <tr>
                 <td>1.8.0</td>
-                <td>272</td>
-                <td>7.826%</td>
+                <td>62</td>
+                <td>1.791%</td>
             </tr>
         
             <tr>
                 <td>1.8.1</td>
-                <td>2507</td>
-                <td>90.099%</td>
+                <td>894</td>
+                <td>27.486%</td>
             </tr>
         
             <tr>
-                <td>null</td>
-                <td>1</td>
-                <td>0.000%</td>
+                <td>1.8.2</td>
+                <td>1910</td>
+                <td>68.558%</td>
             </tr>
         
             <tr>
                 <td>unknown</td>
-                <td>258</td>
-                <td>1.956%</td>
+                <td>259</td>
+                <td>2.047%</td>
             </tr>
         
         </tbody>
@@ -195,7 +196,7 @@
         
             <tr>
                 <td>1.6.25</td>
-                <td>2</td>
+                <td>1</td>
                 <td>0.000%</td>
             </tr>
         
@@ -208,25 +209,31 @@
             <tr>
                 <td>1.7.12</td>
                 <td>1</td>
-                <td>0.002%</td>
+                <td>0.003%</td>
             </tr>
         
             <tr>
                 <td>1.7.14</td>
-                <td>1106</td>
-                <td>93.844%</td>
+                <td>952</td>
+                <td>85.771%</td>
             </tr>
         
             <tr>
                 <td>1.7.15</td>
-                <td>21</td>
-                <td>4.792%</td>
+                <td>22</td>
+                <td>4.346%</td>
             </tr>
         
             <tr>
                 <td>1.7.16</td>
-                <td>4</td>
-                <td>0.197%</td>
+                <td>2</td>
+                <td>0.000%</td>
+            </tr>
+        
+            <tr>
+                <td>1.7.17</td>
+                <td>3</td>
+                <td>0.034%</td>
             </tr>
         
             <tr>
@@ -237,20 +244,20 @@
         
             <tr>
                 <td>1.8.1</td>
-                <td>1</td>
-                <td>0.000%</td>
+                <td>165</td>
+                <td>8.536%</td>
             </tr>
         
             <tr>
                 <td>1.8.2</td>
-                <td>1</td>
-                <td>1.104%</td>
+                <td>7</td>
+                <td>1.231%</td>
             </tr>
         
             <tr>
                 <td>unknown</td>
-                <td>51</td>
-                <td>0.060%</td>
+                <td>56</td>
+                <td>0.080%</td>
             </tr>
         
         </tbody>
@@ -272,5 +279,96 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
 
+
+        <script>
+            // Local storage name
+            const FAV_LSN = "favorites";
+
+            function table_sorter(sortName, sortOrder, data) {
+                let order = sortOrder === 'desc' ? -1 : 1;
+
+                data.sort(function(a, b) {
+                    let _max = 5000;
+
+                    let _a = a[sortName] == "-" ? _max : parseFloat(a[sortName]);
+                    let _b = b[sortName] == "-" ? _max : parseFloat(b[sortName]);
+
+                    let minus = -1;
+
+                    if (_a > _b) {
+                        return order;
+                    }
+
+                    if (_a < _b) {
+                        return minus * order;
+                    }
+
+                    return 0;
+                });
+            }
+
+            function arrayRemove(arr, value) {
+                return arr.filter(function(ele) {
+                    return ele != value;
+                });
+            }
+
+            function handle_click() {
+                /**
+                 * Handle click on star
+                 */
+                let row_id = $(this).parent().parent().attr("id");
+                console.log("Handle row id: " + row_id);
+
+                let favs = localStorage.getItem(FAV_LSN).split(";");
+
+                if (favs.includes(row_id)) {
+                    favs = arrayRemove(favs, row_id);
+                    $("#fav-" + row_id).removeClass("bi-star-fill").addClass("bi-star");
+                } else {
+                    favs.push(row_id);
+                    $("#fav-" + row_id).removeClass("bi-star").addClass("bi-star-fill");
+                }
+                localStorage.setItem(FAV_LSN, favs.join(";"));
+
+                init_favorites();
+            }
+
+            function init_favorites() {
+                if (localStorage.getItem(FAV_LSN) === null) {
+                    localStorage.setItem(FAV_LSN, [].join(";"));
+                }
+
+                let favs = localStorage.getItem(FAV_LSN).split(";");
+                let tbody = $("#tbody");
+
+                $(".favs").removeClass("bi-star-fill").addClass("bi-star");
+
+                $(favs).each(function() {
+                    if(!this.toString()) {
+                        return;
+                    }
+
+                    let row_id = "#" + this.toString();
+                    let fav_id = "#fav-" + this.toString();
+
+                    $(fav_id).removeClass("bi-star").addClass("bi-star-fill");
+
+                    // Move row
+                    let row = $(row_id).clone();
+                    $(row_id).remove()
+                    tbody.prepend(row);
+                });
+
+                $(".fav-icon").off("click").click(handle_click);
+            }
+
+            $('table').bootstrapTable({
+                onSort: function(name, order) {
+                    setTimeout(init_favorites, 1);
+                }
+            });
+            init_favorites()
+        </script>
     </body>
 </html>
