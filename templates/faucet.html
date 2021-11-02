@@ -12,13 +12,13 @@
                     </code>
                 </p>
 
-                <form action="{{ url('faucet') }}" method="POST">
+                <form action="{{ url('faucet') }}" method="POST" aria-disabled="true">
                     <div class="form-group">
                         <label for="addr">Address</label>
-                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana testnet ADDR">
+                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana testnet ADDR" disabled>
                         <small id="addr_help" class="form-text text-muted">Your Solana Testnet base58 address</small>
                     </div>
-                    <input type="submit" class="btn btn-primary" value="show me the money!">
+                    <input type="submit" class="btn btn-primary" value="show me the money!" disabled>
                 </form>
             </section>
 
