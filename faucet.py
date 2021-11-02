@@ -5,14 +5,11 @@ import config
 import os
 import time
 import jinja2
-import uvloop
 import asyncio
 import argparse
 import aiohttp_jinja2
 from aiohttp import web
 
-
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 loop = asyncio.get_event_loop()
 
 

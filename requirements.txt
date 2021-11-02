@@ -1,6 +1,5 @@
 Jinja2
 base58
-uvloop
 aiohttp
 aiohttp-jinja2
 requests
