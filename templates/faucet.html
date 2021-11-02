@@ -1,0 +1,29 @@
+{%- set active_page = "Faucet" -%}
+
+{%- include "_layout_header.html" -%}
+
+        <div class="container-fluid">
+
+            <section class="jumbotron text-center">
+                <h2>Community testnet faucet: {{ faucet.balance }} SOL</h2>
+                <p>How to help?
+                    <code>
+                        solana -ut withdraw-from-vote-account vote-account-keypair.json {{ faucet.address }} ALL;
+                    </code>
+                </p>
+
+                <form action="{{ url('faucet') }}" method="POST">
+                    <div class="form-group">
+                        <label for="addr">Address</label>
+                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana testnet ADDR">
+                        <small id="addr_help" class="form-text text-muted">Your Solana Testnet base58 address</small>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="show me the money!">
+                </form>
+            </section>
+
+
+        </div>
+
+
+{%- include "_layout_footer.html" -%}

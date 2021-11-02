@@ -11,3 +11,5 @@ SFDP_URL = "&".join((
     "offset=%d"
 ))
 
+CACHE_JINJA2_DIR = "/tmp/solanatools.xyz_jinja2"
+TESTNET_FAUCET_ADDR = "HdgXzrgbt8VqqiFBnrAtAgajhQK9pYYjeGZgPtyX7ubg"
