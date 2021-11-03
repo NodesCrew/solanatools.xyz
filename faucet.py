@@ -18,14 +18,15 @@ SOLANA_KEYPAIR = ".config/faucet.json"
 
 async def faucet_balance():
     proc = await asyncio.create_subprocess_exec(
-        "solana", "-ut", "balance", config.TESTNET_FAUCET_ADDR,
+        "/root/.local/share/solana/install/active_release/bin/solana",
+        "-ut", "balance", config.TESTNET_FAUCET_ADDR,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
     )
 
     stdout, stderr = await proc.communicate()
     balance = stdout.decode()
-    return int(balance.split(" SOL")[0])
+    return int(float(balance.split(" SOL")[0]))
 
 
 @aiohttp_jinja2.template("faucet.html")
