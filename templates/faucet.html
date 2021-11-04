@@ -6,19 +6,25 @@
 
             <section class="jumbotron text-center">
                 <h2>Community testnet faucet: {{ faucet.balance }} SOL</h2>
+                <p>
+                    Faucet gives 100 SOL per address. This is enough for your test node to start, as well as to stake.
+                </p>
                 <p>How to help?
                     <code>
                         solana -ut withdraw-from-vote-account vote-account-keypair.json {{ faucet.address }} ALL;
                     </code>
                 </p>
 
-                <form action="{{ url('faucet') }}" method="POST" aria-disabled="true">
+                {% if faucet.message %}
+                    <div class="p-3 mb-2 bg-info text-white">{{ faucet.message }}</div>
+                {% endif %}
+
+                <form action="{{ url('faucet') }}" method="POST">
                     <div class="form-group">
-                        <label for="addr">Address</label>
-                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana testnet ADDR" disabled>
+                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana testnet ADDR">
                         <small id="addr_help" class="form-text text-muted">Your Solana Testnet base58 address</small>
                     </div>
-                    <input type="submit" class="btn btn-primary" value="show me the money!" disabled>
+                    <input type="submit" class="btn btn-primary" value="show me the money!">
                 </form>
             </section>
 

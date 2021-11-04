@@ -13,12 +13,15 @@ from aiohttp import web
 loop = asyncio.get_event_loop()
 
 
+HISTORY_FILE = "data/faucet/history.txt"
 SOLANA_KEYPAIR = ".config/faucet.json"
 
 
 async def faucet_balance():
+    """ Check faucet balance
+    """
     proc = await asyncio.create_subprocess_exec(
-        "/root/.local/share/solana/install/active_release/bin/solana",
+        config.SOL_BINARY,
         "-ut", "balance", config.TESTNET_FAUCET_ADDR,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
@@ -29,16 +32,84 @@ async def faucet_balance():
     return int(float(balance.split(" SOL")[0]))
 
 
+async def faucet_send(wallet, amount):
+    """ Send tokens
+    """
+    print([config.SOL_BINARY, "transfer",
+        "-ut",
+        "--keypair", SOLANA_KEYPAIR,
+        wallet, f"{amount}",])
+
+    proc = await asyncio.create_subprocess_exec(
+        config.SOL_BINARY, "transfer",
+        "-ut",
+        "--keypair", SOLANA_KEYPAIR,
+        wallet, f"{amount}",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE
+    )
+
+    stdout, stderr = await proc.communicate()
+    result = stdout.decode()
+
+
+async def faucet_history_read():
+    """ Read list of wallets already tokens sent
+    """
+    try:
+        with open("data/faucet/history.txt") as f:
+            return set(line.strip() for line in f)
+    except FileNotFoundError:
+        return set()
+
+
+async def faucet_history_append(wallet):
+    """
+    """
+    with open("data/faucet/history.txt", "a+") as w:
+        w.write(f"{wallet}\n")
+
+
 @aiohttp_jinja2.template("faucet.html")
 async def route_faucet(request):
     balance = await faucet_balance()
-
-    return {
+    data = {
         "faucet": {
             "balance": balance,
             "address": config.TESTNET_FAUCET_ADDR
         }
     }
+
+    if request.method == "POST":
+        if balance < config.SOL_FAUCET_AMOUNT:
+            data["faucet"]["message"] = "Balance too small ;("
+            return data
+
+        payload = await request.post()
+        wallet = payload.get("addr")
+
+        if not wallet:
+            data["faucet"]["message"] = "Wrong address to send ;("
+            return data
+
+        print("Send sols to %s" % wallet)
+
+        history = await faucet_history_read()
+        if wallet in history:
+            data["faucet"]["message"] = "Only 100 SOL per address! ;("
+            return data
+
+        # Send SOLs
+        await faucet_send(wallet, config.SOL_FAUCET_AMOUNT)
+        data["faucet"]["message"] = "Tokens sent!"
+
+        # Save transfer in history
+        await faucet_history_append(wallet)
+
+        # Update balance
+        data["faucet"]["balance"] = await faucet_balance()
+
+    return data
 
 
 def web_setup(app) -> web.Application:
@@ -145,6 +216,8 @@ async def create_app():
 
 
 if __name__ == "__main__":
+    os.makedirs("data/faucet", exist_ok=True)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("host")
     parser.add_argument("port", type=int)
