@@ -43,14 +43,17 @@ def grab_rewards(vote_account):
     command = [
         "solana",
         "-um", "vote-account",  vote_account,
-        "--with-rewards",
+        "--with-rewards", "--num-rewards-epochs", "3",
         "--output", "json"
     ]
 
     data = subprocess.check_output(command)
 
-    for epoch_info in json.loads(data.decode())["epochRewards"]:
-        yield epoch_info["epoch"], epoch_info["amount"]
+    try:
+        for epoch_info in json.loads(data.decode())["epochRewards"]:
+            yield epoch_info["epoch"], epoch_info["amount"]
+    except KeyError:
+        print(f"Unable to grab rewards for {vote_account}")
 
 
 def update_rewards_mainnet():

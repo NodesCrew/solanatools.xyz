@@ -52,6 +52,8 @@ async def faucet_send(wallet, amount):
     stdout, stderr = await proc.communicate()
     result = stdout.decode()
 
+    print(f"Faucet send \nstdout {stdout}\nstderr {stderr}")
+
 
 async def faucet_history_read():
     """ Read list of wallets already tokens sent
