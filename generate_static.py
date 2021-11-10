@@ -102,7 +102,7 @@ def get_onboarding_context():
                 nodes[tn_pubkey]["scoring"] = node_scoring(nodes[tn_pubkey])
                 nodes[tn_pubkey]["positions"][epoch_no] = node_position
 
-    epoches = list(sorted(epoches))
+    epoches = list(sorted(epoches))[-5:]
 
     nodes_clean = dict()
     for tn_pubkey, node in nodes.items():
