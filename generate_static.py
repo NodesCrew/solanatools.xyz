@@ -29,6 +29,8 @@ def get_actual_states():
         epoch_no = int(epoch_file.split("/")[-1][0:3])
         max_epoch = max(max_epoch, epoch_no)
 
+    print(f"Max epoch for states is {max_epoch}")
+
     for line in iter_file("data/states/%s.txt" % max_epoch):
         tn_pubkey, state = line.split(";")
         states[tn_pubkey] = state
@@ -36,17 +38,27 @@ def get_actual_states():
     return states
 
 
+def read_cluster_info(cluster_name):
+    max_epoch = 0
+
+    for epoch_file in sorted(glob.glob(f"data/clusters/{cluster_name}/*.txt")):
+        epoch_no = int(epoch_file.split("/")[-1][0:3])
+        max_epoch = max(max_epoch, epoch_no)
+
+    with open(f"data/clusters/{cluster_name}/{max_epoch}.txt") as f:
+        cluster_info = json.load(f)
+
+    cluster_info["epoch_no"] = max_epoch
+    return cluster_info
+
+
 def get_index_context():
     """ Get vars for index.html and useful templates
     """
-    for epoch_file in sorted(glob.glob("data/clusters/mainnet/*.txt")):
-        with open(epoch_file) as f:
-            mainnet = json.load(f)
+    testnet = read_cluster_info("testnet")
+    mainnet = read_cluster_info("mainnet")
 
-    for epoch_file in sorted(glob.glob("data/clusters/testnet/*.txt")):
-        with open(epoch_file) as f:
-            testnet = json.load(f)
-
+    # Get queue size
     return dict(mainnet=mainnet, testnet=testnet)
 
 

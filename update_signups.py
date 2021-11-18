@@ -13,6 +13,8 @@ import datetime
 from lib.rpc import call_rpc
 from lib.rpc import get_epoch
 
+from update_validators_testnet import update_validators_testnet
+
 STATES = {
     0: "Uninitialized",
     1: "Pending",
@@ -158,5 +160,6 @@ def update_signups():
 
 
 if __name__ == "__main__":
+    update_validators_testnet()
     update_signups()
 
