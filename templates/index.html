@@ -8,12 +8,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for version, counter in cluster.versions_nodes | dictsort %}
+        {% for version in cluster.versions_sorted %}
+            {%  if version in  cluster.versions_nodes %}
             <tr>
                 <td>{{ version }}</td>
                 <td>{{ cluster.versions_nodes[version] }}</td>
                 <td>{{ "%.3f" % (cluster.versions_stake[version] / cluster.stake_total * 100)  }}%</td>
             </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
@@ -26,12 +28,12 @@
         <div class="container-fluid">
             <div class="row col-sm-12">
                 <div class="col-sm-6">
-                    <h2>Testnet cluster</h2>
+                    <h2>Testnet cluster (epoch #{{ testnet.epoch_no }})</h2>
                     {{ cluster_versions_table(testnet) }}
                 </div>
 
                 <div class="col-sm-6">
-                    <h2>Mainnet cluster</h2>
+                    <h2>Mainnet cluster (epoch #{{ mainnet.epoch_no }})</h2>
                     {{ cluster_versions_table(mainnet) }}
                 </div>
             </div>

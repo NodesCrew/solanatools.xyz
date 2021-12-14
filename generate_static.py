@@ -9,6 +9,7 @@ from contextlib import suppress
 from collections import defaultdict
 
 from lib.common import iter_file
+from distutils.version import StrictVersion
 
 
 def render(jinja2_env, template_name, context, target=None):
@@ -41,6 +42,15 @@ def get_actual_states():
 def read_cluster_info(cluster_name):
     max_epoch = 0
 
+    def clear_versions(versions):
+        valid = []
+        for v in versions:
+            if v not in ("null", "unknown"):
+                valid.append(v)
+            elif "0.0.0" not in valid:
+                valid.append("0.0.0")
+        return valid
+
     for epoch_file in sorted(glob.glob(f"data/clusters/{cluster_name}/*.txt")):
         epoch_no = int(epoch_file.split("/")[-1][0:3])
         max_epoch = max(max_epoch, epoch_no)
@@ -48,7 +58,11 @@ def read_cluster_info(cluster_name):
     with open(f"data/clusters/{cluster_name}/{max_epoch}.txt") as f:
         cluster_info = json.load(f)
 
+    _versions = clear_versions(cluster_info["versions_nodes"].keys())
+    _versions.sort(key=StrictVersion)
+
     cluster_info["epoch_no"] = max_epoch
+    cluster_info["versions_sorted"] = _versions
     return cluster_info
 
 
