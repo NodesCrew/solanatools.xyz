@@ -1,17 +1,15 @@
 {%- set active_page = "Faucet" -%}
 
 {%- include "_layout_header.html" -%}
-
         <div class="container-fluid">
-
             <section class="jumbotron text-center">
-                <h2>Community testnet faucet: {{ faucet.balance }} SOL</h2>
+                <h2>Community {{ faucet.cluster }} faucet: {{ faucet.balance }} SOL</h2>
                 <p>
-                    Faucet gives 100 SOL per address. This is enough for your test node to start, as well as to stake.
+                    Faucet gives {{ faucet.limit }} SOL per address. This is enough for your node to start, as well as to stake.
                 </p>
                 <p>How to help?
                     <code>
-                        solana -ut withdraw-from-vote-account vote-account-keypair.json {{ faucet.address }} ALL;
+                        solana -u{{ faucet.cluster[0] }} withdraw-from-vote-account vote-account-keypair.json {{ faucet.address }} ALL;
                     </code>
                 </p>
 
@@ -19,17 +17,14 @@
                     <div class="p-3 mb-2 bg-info text-white">{{ faucet.message }}</div>
                 {% endif %}
 
-                <form action="{{ url('faucet') }}" method="POST">
+                <form action="{{ url('faucet', cluster=faucet.cluster) }}" method="POST">
                     <div class="form-group">
-                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana testnet ADDR">
-                        <small id="addr_help" class="form-text text-muted">Your Solana Testnet base58 address</small>
+                        <input id="addr" name="addr" class="form-control" aria-describedby="addr_help" placeholder="Solana {{ faucet.cluster }} ADDR">
+                        <small id="addr_help" class="form-text text-muted">Your Solana {{ faucet.cluster }} base58 address</small>
                     </div>
                     <input type="submit" class="btn btn-primary" value="show me the money!">
                 </form>
             </section>
-
-
         </div>
-
 
 {%- include "_layout_footer.html" -%}

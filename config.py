@@ -13,7 +13,7 @@ SFDP_URL = "&".join((
 ))
 
 CACHE_JINJA2_DIR = "/tmp/solanatools.xyz_jinja2"
-TESTNET_FAUCET_ADDR = "HdgXzrgbt8VqqiFBnrAtAgajhQK9pYYjeGZgPtyX7ubg"
+FAUCET_ADDR = "HdgXzrgbt8VqqiFBnrAtAgajhQK9pYYjeGZgPtyX7ubg"
 
 SOL_BINARY = "/root/.local/share/solana/install/active_release/bin/solana"
 if not os.path.exists(SOL_BINARY):

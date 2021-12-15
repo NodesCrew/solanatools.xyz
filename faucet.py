@@ -13,16 +13,25 @@ from aiohttp import web
 loop = asyncio.get_event_loop()
 
 
-HISTORY_FILE = "data/faucet/history.txt"
 SOLANA_KEYPAIR = ".config/faucet.json"
 
+CLUSTERS = {
+    "devnet": {
+        "limit": 1,
+    },
+    "testnet": {
+        "limit": 100
+    },
+}
 
-async def faucet_balance():
+
+async def faucet_balance(cluster_name: str) -> int:
     """ Check faucet balance
     """
     proc = await asyncio.create_subprocess_exec(
         config.SOL_BINARY,
-        "-ut", "balance", config.TESTNET_FAUCET_ADDR,
+        "-u%s" % cluster_name[0],
+        "balance", config.FAUCET_ADDR,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
     )
@@ -32,19 +41,15 @@ async def faucet_balance():
     return int(float(balance.split(" SOL")[0]))
 
 
-async def faucet_send(wallet, amount):
+async def faucet_send(wallet, amount, cluster_name):
     """ Send tokens
     """
-    print([config.SOL_BINARY, "transfer",
-        "-ut",
-        "--keypair", SOLANA_KEYPAIR,
-        wallet, f"{amount}",])
-
     proc = await asyncio.create_subprocess_exec(
         config.SOL_BINARY, "transfer",
-        "-ut",
+        "-u%s" % cluster_name[0],
         "--keypair", SOLANA_KEYPAIR,
-        wallet, f"{amount}",
+        wallet,
+        f"{amount}",
         "--allow-unfunded-recipient",
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
@@ -56,36 +61,45 @@ async def faucet_send(wallet, amount):
     print(f"Faucet send \nstdout {stdout}\nstderr {stderr}")
 
 
-async def faucet_history_read():
+async def faucet_history_read(cluster_name):
     """ Read list of wallets already tokens sent
     """
     try:
-        with open("data/faucet/history.txt") as f:
+        with open(f"data/faucet/{cluster_name}.txt") as f:
             return set(line.strip() for line in f)
     except FileNotFoundError:
         return set()
 
 
-async def faucet_history_append(wallet):
+async def faucet_history_append(wallet, cluster_name):
     """
     """
-    with open("data/faucet/history.txt", "a+") as w:
+    with open(f"data/faucet/{cluster_name}.txt", "a+") as w:
         w.write(f"{wallet}\n")
 
 
 @aiohttp_jinja2.template("faucet.html")
 async def route_faucet(request):
-    balance = await faucet_balance()
+
+    cluster_name = request.match_info["cluster"]
+    if cluster_name not in CLUSTERS:
+        raise web.HTTPMovedPermanently("/")
+
+    balance = await faucet_balance(cluster_name)
+    cluster_limit = CLUSTERS[cluster_name]["limit"]
+
     data = {
         "faucet": {
+            "limit": cluster_limit,
+            "cluster": cluster_name,
             "balance": balance,
-            "address": config.TESTNET_FAUCET_ADDR
+            "address": config.FAUCET_ADDR
         }
     }
 
     if request.method == "POST":
-        if balance < config.SOL_FAUCET_AMOUNT:
-            data["faucet"]["message"] = "Balance too small ;("
+        if balance < cluster_limit:
+            data["faucet"]["message"] = "Faucet balance is too small ;("
             return data
 
         payload = await request.post()
@@ -95,22 +109,20 @@ async def route_faucet(request):
             data["faucet"]["message"] = "Wrong address to send ;("
             return data
 
-        print("Send sols to %s" % wallet)
-
-        history = await faucet_history_read()
+        history = await faucet_history_read(cluster_name)
         if wallet in history:
             data["faucet"]["message"] = "Only 100 SOL per address! ;("
             return data
 
         # Send SOLs
-        await faucet_send(wallet, config.SOL_FAUCET_AMOUNT)
+        await faucet_send(wallet, cluster_limit, cluster_name)
         data["faucet"]["message"] = "Tokens sent!"
 
         # Save transfer in history
-        await faucet_history_append(wallet)
+        await faucet_history_append(wallet, cluster_name)
 
         # Update balance
-        data["faucet"]["balance"] = await faucet_balance()
+        data["faucet"]["balance"] = await faucet_balance(cluster_name)
 
     return data
 
@@ -119,10 +131,10 @@ def web_setup(app) -> web.Application:
     """ Configure routes
     """
     app.router.add_route(
-        "GET", "/faucet.html", route_faucet, name="faucet")
+        "GET", r"/faucet/{cluster}.html", route_faucet, name="faucet")
 
     app.router.add_route(
-        "POST", "/faucet.html", route_faucet)
+        "POST", r"/faucet/{cluster}.html", route_faucet)
 
     return app
 
