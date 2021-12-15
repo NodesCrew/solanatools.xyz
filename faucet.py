@@ -45,6 +45,7 @@ async def faucet_send(wallet, amount):
         "-ut",
         "--keypair", SOLANA_KEYPAIR,
         wallet, f"{amount}",
+        "--allow-unfunded-recipient",
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
     )
@@ -88,7 +89,7 @@ async def route_faucet(request):
             return data
 
         payload = await request.post()
-        wallet = payload.get("addr")
+        wallet = payload.get("addr", "").strip()
 
         if not wallet:
             data["faucet"]["message"] = "Wrong address to send ;("
