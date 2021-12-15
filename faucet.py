@@ -17,7 +17,7 @@ SOLANA_KEYPAIR = ".config/faucet.json"
 
 CLUSTERS = {
     "devnet": {
-        "limit": 1,
+        "limit": 25,
     },
     "testnet": {
         "limit": 100
