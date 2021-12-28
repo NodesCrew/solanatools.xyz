@@ -17,6 +17,8 @@ DIR_MAINNET = "data/credits/mainnet"
 def update_credits(cluster_rpc: str, dir_name: str, ):
     """ Update credits for cluster nodes
     """
+    print(f"Update credits for {cluster_rpc}")
+
     # Read credits database
     credits = collections.defaultdict(dict)
     for epoch_path in sorted(glob.glob(dir_name + "/*.txt")):

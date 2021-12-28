@@ -2,6 +2,8 @@
 
 import glob
 import json
+import pprint
+
 import jinja2
 import datetime
 
@@ -261,11 +263,27 @@ def get_credits_context(cluster):
                 credits_ = list(map(int, credits_))
                 nodes[pubkey]["credits"][epoch_no] = credits_[0] - credits_[1]
 
-    return {
-        "nodes": nodes,
-        "epoches": epoches,
-        "cluster": cluster
-    }
+    epoches = list(sorted(epoches))
+    return dict(nodes=nodes, epoches=epoches, cluster=cluster)
+
+
+def get_growth_context(cluster):
+    """ Get cluster growth data """
+    total = dict()
+    active = dict()
+    epoches = set()
+
+    for epoch_file in sorted(glob.glob(f"data/clusters/{cluster}/*.txt")):
+        epoch_no = int(epoch_file.split("/")[-1][0:3])
+        epoches.add(epoch_no)
+
+        with open(epoch_file) as f:
+            data = json.load(f)
+            total[epoch_no] = data["count_total"]
+            active[epoch_no] = data["count_active"]
+
+    epoches = list(sorted(epoches))
+    return dict(active=active, total=total, epoches=epoches, cluster=cluster)
 
 
 def generate_static():
@@ -286,6 +304,9 @@ def generate_static():
 
     render(jinja2_env, "credits", get_credits_context("mainnet"),
            target="credits-mainnet")
+
+    render(jinja2_env, "growth", dict(testnet=get_growth_context("testnet"),
+                                      mainnet=get_growth_context("mainnet")))
 
 
 if __name__ == "__main__":
