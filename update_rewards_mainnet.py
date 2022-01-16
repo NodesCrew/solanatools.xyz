@@ -43,7 +43,7 @@ def grab_rewards(vote_account):
     command = [
         "solana",
         "-um", "vote-account",  vote_account,
-        "--with-rewards", "--num-rewards-epochs", "3",
+        "--with-rewards", "--num-rewards-epochs", "1",
         "--output", "json"
     ]
 
