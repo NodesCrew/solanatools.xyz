@@ -3,6 +3,8 @@ import os
 
 RPC_TESTNET = "https://api.testnet.solana.com"
 RPC_MAINNET = "https://api.mainnet-beta.solana.com"
+RPC_MAINNET = "http://172.106.10.50:8899"
+RPC_MAINNET = "https://solana-api.projectserum.com"
 
 SFDP_URL = "&".join((
     "https://kyc-api.vercel.app/api/validators/list?limit=100",

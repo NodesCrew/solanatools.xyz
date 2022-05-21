@@ -102,6 +102,7 @@ def update_signups():
     os.makedirs("data/signups/dates", exist_ok=True)
     os.makedirs("data/signups/epoches", exist_ok=True)
 
+    print("Get current epoch")
     epoch_no = get_epoch(cluster_rpc=config.RPC_TESTNET)
 
     cached_validators = dict()
@@ -127,6 +128,7 @@ def update_signups():
                 cached_validators[tn_pubkey] = first_trx
     print(f"Total cached_validators before start: {len(cached_validators)}")
 
+    
     for tn_pubkey in iter_signups():
         # Skip known validators
         if tn_pubkey in github_validators:

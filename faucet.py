@@ -38,8 +38,10 @@ async def faucet_balance(cluster_name: str) -> int:
 
     stdout, stderr = await proc.communicate()
     balance = stdout.decode()
-    return int(float(balance.split(" SOL")[0]))
-
+    try:
+        return int(float(balance.split(" SOL")[0]))
+    except ValueError:
+        return 0
 
 async def faucet_send(wallet, amount, cluster_name):
     """ Send tokens

@@ -17,6 +17,10 @@ def grab_data():
         url = config.SFDP_URL % (x * 99)
         d = http.get(url).json()
 
+        if "data" not in d:
+            print(d.keys())
+            break
+
         if not d["data"]:
             break
 

@@ -43,7 +43,7 @@ def grab_rewards(vote_account):
     command = [
         "solana",
         "-um", "vote-account",  vote_account,
-        "--with-rewards", "--num-rewards-epochs", "1",
+        "--with-rewards", "--num-rewards-epochs", "10",
         "--output", "json"
     ]
 
@@ -95,9 +95,11 @@ def update_rewards_mainnet():
             print(f"Skip grabbing for {node_pubkey} - already in our database")
             continue
 
+        """
         if node_pubkey not in github_pubkeys:
             print(f"Skip grabbing for {node_pubkey} - not in bot database")
             continue
+        """
 
         vote_pubkey = node["votePubkey"]
 

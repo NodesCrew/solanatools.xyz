@@ -85,6 +85,10 @@ def get_onboarding_context():
         bonus_13 = float(node["bonus_13"] or 0)
         bonus_207 = float(node["bonus_207"] or 0)
         credits_64p = float(node["credits_64p"] or 0)
+
+        return "%.2f" % (
+                (bonus_207 * .5) + (bonus_13 * .5))
+
         return "%.2f" % (
                 (bonus_207 * .25) + (bonus_13 * .25) + (credits_64p * .5))
 
@@ -199,7 +203,7 @@ def get_signups_context():
 
                 nodes[tn_pubkey]["positions"][epoch_no] = position
 
-    epoches = list(sorted(epoches))
+    epoches = list(sorted(epoches))[-10:]
     return dict(nodes=nodes,
                 epoches=epoches,
                 datetime=datetime.datetime.utcnow())
