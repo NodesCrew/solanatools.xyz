@@ -25,10 +25,8 @@
 
                         <th scope="col" data-field="bonus_207" data-sortable="true">Bonus207</th>
                         <th scope="col" data-field="bonus_13" data-sortable="true">Bonus13</th>
-<!--
-			<th scope="col" data-field="credits_64" data-sortable="true" >Creds</th>
+                        <th scope="col" data-field="credits_64" data-sortable="true" >Creds</th>
                         <th scope="col" data-field="credits_64p" data-sortable="true">Creds%</th>
--->
                         <th scope="col" data-field="scoring" data-sortable="true">Score</th>
                         <th scope="col" data-field="state" title="State">St</th>
                     </tr>
@@ -40,8 +38,8 @@
                         <td>
                             <i class="fav-icon bi bi-star" id="fav-{{ node.testnet_pk }}"></i>
                         </td>
-                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-{{ node.testnet_pk }}.md">{{ node.testnet_pk }}</a></td>
-                        <td><a target="_blank" href="https://raw.githubusercontent.com/wiki/solana-labs/stake-o-matic/md/Validator-{{ node.mainnet_beta_pk }}.md">{{ node.mainnet_beta_pk }}</a></td>
+                        <td><a target="_blank" href="https://solana.org/sfdp-validators/{{ node.testnet_pk }}.md">{{ node.testnet_pk }}</a></td>
+                        <td><a target="_blank" href="https://solana.org/sfdp-validators/{{ node.mainnet_beta_pk }}.md">{{ node.mainnet_beta_pk }}</a></td>
                         <td>{{ node.tds_onboarding_group or "-" }}</td>
 
                         {%- for epoch in epoches -%}
@@ -50,10 +48,8 @@
 
                         <td>{{ node.bonus_207 }}</td>
                         <td>{{ node.bonus_13 }}</td>
-<!--
-			<td>{{ node.credits_64 }}</td>
+                        <td>{{ node.credits_64 }}</td>
                         <td>{{ node.credits_64p }}
--->
                         <td>{{ node.scoring }}</td>
                         <td>
                             {% if node.state == "Approved" %}
