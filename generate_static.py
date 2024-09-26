@@ -84,13 +84,7 @@ def get_onboarding_context():
     def node_scoring(node):
         bonus_13 = float(node["bonus_13"] or 0)
         bonus_207 = float(node["bonus_207"] or 0)
-        credits_64p = float(node["credits_64p"] or 0)
-
-        return "%.2f" % (
-                (bonus_207 * .5) + (bonus_13 * .5))
-
-        return "%.2f" % (
-                (bonus_207 * .25) + (bonus_13 * .25) + (credits_64p * .5))
+        return "%.2f" % ((bonus_207 * .5) + (bonus_13 * .5))
 
     nodes = dict()
     epoches = set()
@@ -103,26 +97,38 @@ def get_onboarding_context():
         with open(epoch_file) as f:
             for line in f:
                 njson = json.loads(line)
-                tn_pubkey = njson["testnet_pk"]
-                node_position = njson["onboarding_number"]
+
+                try:
+                    cs = njson.get("tnCalculatedStats") or njson.get("tn_calculated_stats")
+                    tn_pubkey = njson.get("testnetPubkey") or njson.get("testnet_pk")
+                    mb_pubkey = njson.get("mainnetBetaPubkey") or njson.get("mainnet_beta_pk")
+                    node_position = njson.get("onboardingNumber") or njson.get("onboarding_number")
+
+                    tds_onboarding_group = njson.get("tdsOnboardingGroup") or njson.get("tds_onboarding_group")
+                except KeyError as e:
+                    pprint.pprint(e)
+                    pprint.pprint(njson)
+                    raise
 
                 bonus_13, bonus_207 = None, None
                 credits_64, credits_64p = None, None
 
                 with suppress(TypeError):
-                    cs = njson["tn_calculated_stats"]
                     bonus_13 = "%.2f" % (
-                                cs["percent_bonus_last_13_epochs"] * 100)
+                        cs["percent_bonus_last_13_epochs"] * 100)
+
                     bonus_207 = "%.2f" % (
-                                cs["percent_bonus_since_aug1_2021"] * 100)
-                    credits_64 = int(cs["vote_credits_last_64_epochs"])
-                    credits_64p = "%.2f" % (cs["vote_credit_score"] * 100)
+                        cs["percent_bonus_since_aug1_2021"] * 100)
+
+                    credits_64 = int(cs.get("vote_credits_last_64_epochs") or 0)
+
+                    credits_64p = "%.2f" % (cs.get("vote_credit_score" or 0) * 100)
 
                 if tn_pubkey not in nodes:
                     nodes[tn_pubkey] = {
                         "testnet_pk": tn_pubkey,
-                        "mainnet_beta_pk": njson["mainnet_beta_pk"],
-                        "tds_onboarding_group": njson["tds_onboarding_group"],
+                        "mainnet_beta_pk": mb_pubkey,
+                        "tds_onboarding_group": tds_onboarding_group,
                         "positions": defaultdict(dict),
                     }
 
@@ -315,3 +321,7 @@ def generate_static():
 
 if __name__ == "__main__":
     generate_static()
+
+
+
+

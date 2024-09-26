@@ -3,8 +3,9 @@ import os
 
 RPC_TESTNET = "https://api.testnet.solana.com"
 RPC_MAINNET = "https://api.mainnet-beta.solana.com"
-RPC_MAINNET = "http://172.106.10.50:8899"
-RPC_MAINNET = "https://solana-api.projectserum.com"
+#RPC_MAINNET = "http://172.106.10.50:8899"
+#RPC_MAINNET = "https://solana-api.projectserum.com"
+#RPC_MAINNET = "https://rpc.ankr.com/solana"
 
 SFDP_URL = "&".join((
     "https://kyc-api.vercel.app/api/validators/list?limit=100",
@@ -13,6 +14,15 @@ SFDP_URL = "&".join((
     "search_term=",
     "offset=%d"
 ))
+
+
+SFDP_URL = "&".join((
+    "https://api.solana.org/api/validators/list?limit=100",
+    "&order_by=onboarding_number",
+    "&order=asc",
+    "offset=%d"
+))
+
 
 CACHE_JINJA2_DIR = "/tmp/solanatools.xyz_jinja2"
 FAUCET_ADDR = "HdgXzrgbt8VqqiFBnrAtAgajhQK9pYYjeGZgPtyX7ubg"

@@ -2,12 +2,14 @@
 import config
 
 from lib.rpc import get_epoch
+
 from lib.rpc import get_vote_accounts
 
 import os
 import re
 import glob
 import json
+import time
 import datetime
 import requests
 import subprocess
@@ -43,17 +45,28 @@ def grab_rewards(vote_account):
     command = [
         "solana",
         "-um", "vote-account",  vote_account,
-        "--with-rewards", "--num-rewards-epochs", "10",
+        "--with-rewards", "--num-rewards-epochs", "5",
         "--output", "json"
     ]
 
-    data = subprocess.check_output(command)
-
     try:
-        for epoch_info in json.loads(data.decode())["epochRewards"]:
-            yield epoch_info["epoch"], epoch_info["amount"]
-    except KeyError:
-        print(f"Unable to grab rewards for {vote_account}")
+        data = subprocess.check_output(command)
+    except Exception as e:
+        print(f"unable to check_output for {vote_account}")
+        return 
+
+    count = 15
+
+    while count:
+        try:
+            for epoch_info in json.loads(data.decode())["epochRewards"]:
+                yield epoch_info["epoch"], epoch_info["amount"]
+            return
+        except Exception as e:
+            print(f"Unable to grab rewards for {vote_account}")
+            print(e)
+            time.sleep(5)
+            count -= 1
 
 
 def update_rewards_mainnet():
